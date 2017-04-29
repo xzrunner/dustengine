@@ -1,0 +1,78 @@
+[submodule "src/libraries/bimp"]
+	path = src/libraries/bimp
+	url = ssh://git@tea.ejoy.com:3222/LR/bimp.git
+[submodule "src/libraries/camera25"]
+	path = src/libraries/camera25
+	url = ssh://git@tea.ejoy.com:3222/LR/camera25.git
+[submodule "src/libraries/cu"]
+	path = src/libraries/cu
+	url = ssh://git@tea.ejoy.com:3222/LR/cu.git
+[submodule "src/libraries/ds"]
+	path = src/libraries/ds
+	url = ssh://git@tea.ejoy.com:3222/LR/ds.git
+[submodule "src/libraries/dtex2"]
+	path = src/libraries/dtex2
+	url = ssh://git@tea.ejoy.com:3222/LR/dtex2.git
+[submodule "src/libraries/fs"]
+	path = src/libraries/fs
+	url = ssh://git@tea.ejoy.com:3222/LR/fs.git
+[submodule "src/libraries/gimg"]
+	path = src/libraries/gimg
+	url = ssh://git@tea.ejoy.com:3222/LR/gimg.git
+[submodule "src/libraries/glp"]
+	path = src/libraries/glp
+	url = ssh://git@tea.ejoy.com:3222/LR/glp.git
+[submodule "src/libraries/gtxt"]
+	path = src/libraries/gtxt
+	url = ssh://git@tea.ejoy.com:3222/LR/gtxt.git
+[submodule "src/libraries/gum"]
+	path = src/libraries/gum
+	url = ssh://git@tea.ejoy.com:3222/LR/gum.git
+[submodule "src/libraries/logger"]
+	path = src/libraries/logger
+	url = ssh://git@tea.ejoy.com:3222/LR/logger.git
+[submodule "src/libraries/model3"]
+	path = src/libraries/model3
+	url = ssh://git@tea.ejoy.com:3222/LR/model3.git
+[submodule "src/libraries/mtrail"]
+	path = src/libraries/mtrail
+	url = ssh://git@tea.ejoy.com:3222/LR/mtrail.git
+[submodule "src/libraries/pimg"]
+	path = src/libraries/pimg
+	url = ssh://git@tea.ejoy.com:3222/LR/pimg.git
+[submodule "src/libraries/polymesh"]
+	path = src/libraries/polymesh
+	url = ssh://git@tea.ejoy.com:3222/LR/polymesh.git
+[submodule "src/libraries/ps"]
+	path = src/libraries/ps
+	url = ssh://git@tea.ejoy.com:3222/LR/ps.git
+[submodule "src/libraries/RapidVG"]
+	path = src/libraries/RapidVG
+	url = ssh://git@tea.ejoy.com:3222/LR/RapidVG.git
+[submodule "src/libraries/rigging"]
+	path = src/libraries/rigging
+	url = ssh://git@tea.ejoy.com:3222/LR/rigging.git
+[submodule "src/libraries/ShaderLab"]
+	path = src/libraries/ShaderLab
+	url = ssh://git@tea.ejoy.com:3222/LR/ShaderLab.git
+[submodule "src/libraries/simp"]
+	path = src/libraries/simp
+	url = ssh://git@tea.ejoy.com:3222/LR/simp.git
+[submodule "src/libraries/sm"]
+	path = src/libraries/sm
+	url = ssh://git@tea.ejoy.com:3222/LR/sm.git
+[submodule "src/libraries/sprite2"]
+	path = src/libraries/sprite2
+	url = ssh://git@tea.ejoy.com:3222/LR/sprite2.git
+[submodule "src/libraries/tasks"]
+	path = src/libraries/tasks
+	url = ssh://git@tea.ejoy.com:3222/LR/tasks.git
+[submodule "src/libraries/texpack"]
+	path = src/libraries/texpack
+	url = ssh://git@tea.ejoy.com:3222/LR/texpack.git
+[submodule "src/libraries/timp"]
+	path = src/libraries/timp
+	url = ssh://git@tea.ejoy.com:3222/LR/timp.git
+[submodule "src/libraries/unirender"]
+	path = src/libraries/unirender
+	url = ssh://git@tea.ejoy.com:3222/LR/unirender.git
