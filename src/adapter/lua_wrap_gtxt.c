@@ -42,6 +42,17 @@ ladd_user_font(lua_State* L) {
 	return 0;
 }
 
+static int
+lprint(lua_State* L) {
+	const char* str = luaL_checkstring(L, 1);
+	float x = luaL_checknumber(L, 2);
+	float y = luaL_checknumber(L, 3);
+	int size = luaL_checkinteger(L, 4);
+	gum_gtxt_print(str, x, y, size);
+	return 0;
+	return 0;
+}
+
 int
 luaopen_gtxt_c(lua_State* L) {
 	luaL_Reg l[] = {
@@ -50,6 +61,7 @@ luaopen_gtxt_c(lua_State* L) {
 		{ "add_font", ladd_font },
 		{ "add_color", ladd_color },
 		{ "add_user_font", ladd_user_font },
+		{ "print", lprint },
 		{ NULL, NULL },		
 	};
 	luaL_newlib(L, l);
