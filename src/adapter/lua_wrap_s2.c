@@ -1386,11 +1386,57 @@ lcam_set(lua_State* L) {
 }
 
 static int
+lcam_screen2project(lua_State* L) {
+	void* cam = lua_touserdata(L, 1);
+	if (!cam) {
+		luaL_error(L, "Error passed cam");
+	}
+	int src_x = luaL_checkinteger(L, 2);
+	int src_y = luaL_checkinteger(L, 3);
+	float dst_x, dst_y;
+	s2_cam_screen2project(cam, src_x, src_y, &dst_x, &dst_y);
+	return 2;
+}
+
+static int
 lp3d_buffer_draw(lua_State* L) {
 	float x = luaL_optnumber(L, 1, 0);
 	float y = luaL_optnumber(L, 1, 0);
 	float scale = luaL_optnumber(L, 1, 1);
 	s2_spr_p3d_buffer_draw(x, y, scale);
+	return 0;
+}
+
+static int
+lrvg_set_color(lua_State* L) {
+	uint8_t r, g, b, a;
+	if (lua_istable(L, 1)) {
+		for (int i = 1; i <= 4; i++) {
+			lua_rawgeti(L, 1, i);
+		}
+		r = (uint8_t)luaL_checkinteger(L, -4);
+		g = (uint8_t)luaL_checkinteger(L, -3);
+		b = (uint8_t)luaL_checkinteger(L, -2);
+		a = (uint8_t)luaL_optinteger(L, -1, 255); 
+		lua_pop(L, 4);
+	} else {
+		r = (uint8_t)luaL_checkinteger(L, 1);
+		g = (uint8_t)luaL_checkinteger(L, 2);
+		b = (uint8_t)luaL_checkinteger(L, 3);
+		a = (uint8_t)luaL_optinteger(L, 4, 255);
+	}
+	s2_rvg_set_color(r, g, b, a);
+	return 0;
+}
+
+static int
+lrvg_draw_rect(lua_State *L) {
+	bool filling = lua_toboolean(L, 1);
+	float x = luaL_checknumber(L, 2);
+	float y = luaL_checknumber(L, 3);
+	float w = luaL_checknumber(L, 4);
+	float h = luaL_checknumber(L, 5);
+	s2_rvg_draw_rect(filling, x, y, w, h);
 	return 0;
 }
 
@@ -1416,8 +1462,12 @@ luaopen_s2_c(lua_State* L) {
 		{ "cam_release", lcam_release },
 		{ "cam_bind", lcam_bind },
 		{ "cam_set", lcam_set },
+		{ "cam_screen2project", lcam_screen2project },
 
 		{ "p3d_buffer_draw", lp3d_buffer_draw },
+
+		{ "rvg_set_color", lrvg_set_color },
+		{ "rvg_draw_rect", lrvg_draw_rect },
 
 		{ NULL, NULL },
 	};
