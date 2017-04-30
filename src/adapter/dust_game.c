@@ -184,13 +184,15 @@ dust_game_lua(struct game *G) {
 }
 
 static int
-traceback (lua_State *L) {
-	const char *msg = lua_tostring(L, 1);
-	if (msg)
+traceback(lua_State *L) {
+	const char* msg = lua_tostring(L, 1);
+	if (msg) {
 		luaL_traceback(L, L, msg, 1);
-	else if (!lua_isnoneornil(L, 1)) {
-	if (!luaL_callmeta(L, 1, "__tostring"))
-		lua_pushliteral(L, "(no error message)");
+		printf("traceback %s\n", msg);
+	} else if (!lua_isnoneornil(L, 1)) {
+		if (!luaL_callmeta(L, 1, "__tostring")) {
+			lua_pushliteral(L, "(no error message)");
+		}
 	}
 	return 1;
 }
