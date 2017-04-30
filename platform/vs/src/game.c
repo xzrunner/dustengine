@@ -48,9 +48,7 @@ static const char * startscript =
 "require(\"dust.framework\").WorkDir = ''\n"
 "assert(script, 'I need a script name')\n"
 "path = string.match(path,[[(.*)\\[^\\]*$]])\n"
-"package.path = path .. [[\\?.lua;]] .. path .. [[\\?\\init.lua;.\\src\\scripts\\?.lua;.\\src\\scripts\\init.lua]]\n"
-"print(path)"
-"print(package.path)"
+"package.path = path .. [[\\?.lua;]] .. path .. [[\\?\\init.lua;.\\src\\scripts\\?.lua;.\\src\\scripts\\?\\init.lua]]\n"
 "local f = assert(loadfile(script))\n"
 "f(script)\n"
 ;
