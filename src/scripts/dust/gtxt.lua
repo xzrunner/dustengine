@@ -18,4 +18,6 @@ end
 gtxt.add_font = c.add_font
 gtxt.add_color = c.add_color
 
+gtxt.print = c.print
+
 return gtxt

@@ -159,6 +159,10 @@ function sprite.get_coords()
     return coord_scene, coord_ui
 end
 
+function sprite.get_ui_cam()
+    return cam_ui
+end
+
 function sprite.get_scene_cam()
     return cam_scene
 end
