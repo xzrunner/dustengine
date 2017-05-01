@@ -23,12 +23,12 @@ int luaopen_dtex2_c(lua_State* L);
 int luaopen_gtxt_c(lua_State* L);
 int luaopen_sl_c(lua_State* L);
 int luaopen_c25_c(lua_State* L);
-int luaopen_stat_c(lua_State *L);
-int luaopen_s2_c(lua_State *L);
-int luaopen_gum_c(lua_State *L);
+int luaopen_stat_c(lua_State* L);
+int luaopen_s2_c(lua_State* L);
+int luaopen_gum_c(lua_State* L);
 
-#define WIDTH 800
-#define HEIGHT 600
+#define WIDTH 1024
+#define HEIGHT 768
 
 typedef struct {
 	HWND wnd;
@@ -48,7 +48,7 @@ static const char * startscript =
 "require(\"dust.framework\").WorkDir = ''\n"
 "assert(script, 'I need a script name')\n"
 "path = string.match(path,[[(.*)\\[^\\]*$]])\n"
-"package.path = path .. [[\\?.lua;]] .. path .. [[\\?\\init.lua;.\\src\\scripts\\?.lua;.\\src\\scripts\\?\\init.lua]]\n"
+"package.path = path .. [[\\?.lua;]] .. path .. [[\\?\\init.lua;.\\src\\scripts\\?.lua;.\\src\\scripts\\?\\init.lua;.\\tests\\?.lua]]\n"
 "local f = assert(loadfile(script))\n"
 "f(script)\n"
 ;
@@ -59,7 +59,7 @@ game_instance() {
 }
 
 static int
-traceback(lua_State *L) {
+traceback(lua_State* L) {
 	const char *msg = lua_tostring(L, 1);
 	if (msg) {
 		luaL_traceback(L, L, msg, 1);
@@ -72,7 +72,7 @@ traceback(lua_State *L) {
 }
 
 static void
-reg_lua_lib(lua_State *L, lua_CFunction func, const char * libname) {
+reg_lua_lib(lua_State* L, lua_CFunction func, const char * libname) {
 	luaL_requiref(L, libname, func, 0);
 	lua_pop(L, 1);
 }
@@ -85,7 +85,7 @@ game_init(int argc, char* argv[]) {
 	G->last_draw = 0;
 	G->reload_flag = 0;
 
-	lua_State *L = G->game->L;
+	lua_State* L = G->game->L;
 
 	// common libs
 	reg_lua_lib(L, luaopen_dtex2_c, "dtex2.c");

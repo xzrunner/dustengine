@@ -1,4 +1,5 @@
 local c = require "gtxt.c"
+local dust = require "dust"
 
 local gtxt = {}
 
@@ -18,6 +19,13 @@ end
 gtxt.add_font = c.add_font
 gtxt.add_color = c.add_color
 
-gtxt.print = c.print
+function gtxt.print(str, x, y, font_size, font_color)
+	local w, h = c.size(str, font_size)
+    local hw = dust.screen_width * dust.screen_scale * 0.5
+    local hh = dust.screen_height * dust.screen_scale * 0.5
+    local x = x - hw + w * 0.5
+    local y = -(y - hh + h * 0.5)
+	c.print(str, x, y, font_size, font_color)
+end
 
 return gtxt

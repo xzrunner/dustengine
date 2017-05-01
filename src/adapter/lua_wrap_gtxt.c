@@ -48,9 +48,39 @@ lprint(lua_State* L) {
 	float x = luaL_checknumber(L, 2);
 	float y = luaL_checknumber(L, 3);
 	int size = luaL_checkinteger(L, 4);
-	gum_gtxt_print(str, x, y, size);
+
+	uint8_t r, g, b, a;
+	if (lua_istable(L, 5)) {
+		for (int i = 1; i <= 4; i++) {
+			lua_rawgeti(L, 5, i);
+		}
+		r = (uint8_t)luaL_checkinteger(L, -4);
+		g = (uint8_t)luaL_checkinteger(L, -3);
+		b = (uint8_t)luaL_checkinteger(L, -2);
+		a = (uint8_t)luaL_optinteger(L, -1, 255); 
+		lua_pop(L, 4);
+	} else {
+		r = (uint8_t)luaL_checkinteger(L, 1);
+		g = (uint8_t)luaL_checkinteger(L, 2);
+		b = (uint8_t)luaL_checkinteger(L, 3);
+		a = (uint8_t)luaL_optinteger(L, 4, 255);
+	}
+	uint32_t color = r << 24 | g << 16 | b << 8 | a;
+
+	gum_gtxt_print(str, x, y, size, color);
+
 	return 0;
-	return 0;
+}
+
+static int
+lsize(lua_State* L) {
+	const char* str = luaL_checkstring(L, 1);
+	int size = luaL_checkinteger(L, 2);
+	float w, h;
+	gum_gtxt_size(str, size, &w, &h);
+	lua_pushnumber(L, w);
+	lua_pushnumber(L, h);
+	return 2;
 }
 
 int
@@ -62,6 +92,7 @@ luaopen_gtxt_c(lua_State* L) {
 		{ "add_color", ladd_color },
 		{ "add_user_font", ladd_user_font },
 		{ "print", lprint },
+		{ "size", lsize },		
 		{ NULL, NULL },		
 	};
 	luaL_newlib(L, l);

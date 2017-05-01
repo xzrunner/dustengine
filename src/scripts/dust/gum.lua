@@ -85,4 +85,6 @@ end
 gum.set_pkg_release_tag = c.set_pkg_release_tag
 gum.release_pkg_after_last_tag = c.release_pkg_after_last_tag
 
+gum.get_screen_size = c.get_screen_size
+
 return gum

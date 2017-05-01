@@ -97,10 +97,10 @@ get_xy(LPARAM lParam, int *x, int *y) {
 		}
  		break;
  	}
-//  	// windows only support one touch id (0)
-//  	int id = 0;
-//  	dust_game_touch(game_instance(), id, x,y,touch);
- }
+ 	// windows only support one touch id (0)
+ 	int id = 0;
+ 	dust_game_touch(game_instance(), id, x,y,touch);
+}
 
 LRESULT CALLBACK 
 WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)

@@ -27,4 +27,8 @@ function mt:get_impl()
 	return self.v_impl
 end
 
+function mt:screen2project(x, y)
+	return c.cam_screen2project(self.v_impl, x, y)
+end
+
 return new

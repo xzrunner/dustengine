@@ -20,8 +20,9 @@
 #define DUST_UPDATE "DUST_UPDATE"
 #define DUST_DRAW "DUST_DRAW"
 #define DUST_TOUCH "DUST_TOUCH"
-#define DUST_GESTURE "DUST_GESTURE"
+#define DUST_KEY "DUST_KEY"
 #define DUST_MESSAGE "DUST_MESSAGE"
+#define DUST_GESTURE "DUST_GESTURE"
 #define DUST_HANDLE_ERROR "DUST_HANDLE_ERROR"
 #define DUST_RESUME "DUST_RESUME"
 #define DUST_PAUSE "DUST_PAUSE"
@@ -34,18 +35,21 @@
 static int LOGIC_FRAME = 30;
 
 static int
-_panic(lua_State *L) {
+_panic(lua_State* L) {
 	const char * err = lua_tostring(L,-1);
 	fault("%s", err);
 	return 0;
 }
 
 static int
-linject(lua_State *L) {
+linject(lua_State* L) {
 	static const char* dust_callback[] = {
 		DUST_LOAD,
 		DUST_UPDATE,
 		DUST_DRAW,
+		DUST_TOUCH,
+		DUST_KEY,
+		DUST_MESSAGE,
 	};
 	int i;
 	for (i=0;i<sizeof(dust_callback)/sizeof(dust_callback[0]);i++) {
@@ -59,7 +63,7 @@ linject(lua_State *L) {
 }
 
 static int
-lset_screen(lua_State *L) {
+lset_screen(lua_State* L) {
 	int w = (int)luaL_checkinteger(L, 1);
 	int h = (int)luaL_checkinteger(L, 2);
 	float scale = lua_tonumber(L, 3);
@@ -68,7 +72,7 @@ lset_screen(lua_State *L) {
 }
 
 static int
-dust_framework(lua_State *L) {
+dust_framework(lua_State* L) {
 	luaL_Reg l[] = {
 		{ "inject", linject },
 		{ "set_screen", lset_screen },
@@ -81,7 +85,7 @@ dust_framework(lua_State *L) {
 }
 
 static void
-checkluaversion(lua_State *L) {
+checkluaversion(lua_State* L) {
 	const lua_Number *v = lua_version(L);
 	if (v != lua_version(NULL))
 		fault("multiple Lua VMs detected");
@@ -119,7 +123,7 @@ memory_status_(struct game *G) {
 lua_State *
 dust_lua_init(struct game *G) {
 	lua_init_aux(G);
-	lua_State *L = G->L;
+	lua_State* L = G->L;
 	if (L == NULL) {
 		return NULL;
 	}
@@ -135,7 +139,7 @@ dust_lua_init(struct game *G) {
 struct game *
 dust_game() {
 	struct game *G = (struct game *)malloc(sizeof(*G));
-	lua_State *L = dust_lua_init(G);
+	lua_State* L = dust_lua_init(G);
 	if (L == NULL) {
 		return NULL;
 	}
@@ -184,7 +188,7 @@ dust_game_lua(struct game *G) {
 }
 
 static int
-traceback(lua_State *L) {
+traceback(lua_State* L) {
 	const char* msg = lua_tostring(L, 1);
 	if (msg) {
 		luaL_traceback(L, L, msg, 1);
@@ -205,7 +209,7 @@ dust_game_logicframe(int frame)
 
 void
 dust_game_start(struct game *G) {
-	lua_State *L = G->L;
+	lua_State* L = G->L;
 	lua_getfield(L, LUA_REGISTRYINDEX, DUST_LOAD);
 	lua_call(L, 0, 0);
 	assert(lua_gettop(L) == 0);
@@ -215,7 +219,7 @@ dust_game_start(struct game *G) {
 }
 
 void 
-dust_handle_error(lua_State *L, const char *err_type, const char *msg) {
+dust_handle_error(lua_State* L, const char *err_type, const char *msg) {
 	lua_getfield(L, LUA_REGISTRYINDEX, DUST_HANDLE_ERROR);
 	lua_pushstring(L, err_type);
 	lua_pushstring(L, msg);
@@ -242,7 +246,7 @@ dust_handle_error(lua_State *L, const char *err_type, const char *msg) {
 }
 
 static int
-call(lua_State *L, int n, int r) {
+call(lua_State* L, int n, int r) {
 	int err = lua_pcall(L, n, r, TRACEBACK_FUNCTION);
 	switch(err) {
 	case LUA_OK:
@@ -272,13 +276,13 @@ call(lua_State *L, int n, int r) {
 }
 
 void
-dust_call_lua(lua_State *L, int n, int r) {
+dust_call_lua(lua_State* L, int n, int r) {
   call(L, n, r);
 	lua_settop(L, TOP_FUNCTION);
 }
 
 static void
-logic_frame(lua_State *L, float time) {
+logic_frame(lua_State* L, float time) {
 	lua_pushvalue(L, UPDATE_FUNCTION);
 	lua_pushnumber(L, time);
 	call(L, 1, 0);
@@ -349,10 +353,10 @@ dust_game_gesture(struct game *G, int type,
 }
 
 void
-dust_game_message(struct game* G,int id_, const char* state, const char* data, lua_Number n) {
+dust_game_message(struct game* G,int id, const char* state, const char* data, lua_Number n) {
 	lua_State* L = G->L;
 	lua_getfield(L, LUA_REGISTRYINDEX, DUST_MESSAGE);
-	lua_pushnumber(L, id_);
+	lua_pushnumber(L, id);
 	lua_pushstring(L, state);
 	lua_pushstring(L, data);
 	lua_pushnumber(L, n);

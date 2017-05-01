@@ -1430,13 +1430,64 @@ lrvg_set_color(lua_State* L) {
 }
 
 static int
-lrvg_draw_rect(lua_State *L) {
+lrvg_set_line_width(lua_State* L) {
+	float width = luaL_checknumber(L, -1);
+	s2_rvg_set_line_width(width);
+	return 0;
+}
+
+static int
+lrvg_draw_line(lua_State *L) {
+	int num = lua_gettop(L);
+	bool is_table = false;
+	if (num == 1 &&	lua_istable(L, 1)) {
+		num = lua_rawlen(L, 1);
+		is_table = true;
+	} 
+
+	float coords[num];
+	if (is_table) {
+		for (int i = 0; i < num; ++i) {
+			lua_rawgeti(L, 1, i + 1);
+			coords[i] = luaL_checknumber(L, -1);
+			lua_pop(L, 1);
+		}
+	} else {
+		for (int i = 0; i < num; ++i) {
+			coords[i] = luaL_checknumber(L, i+1);
+		}
+	}
+
+	s2_rvg_draw_line(coords, num / 2);
+
+	return 0;
+}
+
+static int
+lrvg_draw_rect(lua_State* L) {
 	bool filling = lua_toboolean(L, 1);
 	float x = luaL_checknumber(L, 2);
 	float y = luaL_checknumber(L, 3);
 	float w = luaL_checknumber(L, 4);
 	float h = luaL_checknumber(L, 5);
 	s2_rvg_draw_rect(filling, x, y, w, h);
+	return 0;
+}
+
+static int
+lrvg_draw_circle(lua_State* L) {
+	bool filling = lua_toboolean(L, 1);
+	float x = luaL_checknumber(L, 2);
+	float y = luaL_checknumber(L, 3);
+	float radius = luaL_checknumber(L, 4);
+	int segments;
+	if (lua_isnoneornil(L, 5)) {
+		segments = radius > 10 ? (int) (radius) : 10;
+	} else {
+		segments = luaL_checkinteger(L, 5);
+	}
+	s2_rvg_draw_circle(filling, x, y, radius, segments);
+
 	return 0;
 }
 
@@ -1467,7 +1518,10 @@ luaopen_s2_c(lua_State* L) {
 		{ "p3d_buffer_draw", lp3d_buffer_draw },
 
 		{ "rvg_set_color", lrvg_set_color },
+		{ "rvg_set_line_width", lrvg_set_line_width },
+		{ "rvg_draw_line", lrvg_draw_line },
 		{ "rvg_draw_rect", lrvg_draw_rect },
+		{ "rvg_draw_circle", lrvg_draw_circle },
 
 		{ NULL, NULL },
 	};

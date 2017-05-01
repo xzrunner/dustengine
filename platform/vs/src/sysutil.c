@@ -281,7 +281,7 @@ lget_path(lua_State* L) {
 }
 
 static int
-set_persist_data(lua_State *L) {
+set_persist_data(lua_State* L) {
 	const char * data = lua_tostring(L, 1);
 	if(s_persist_data) {
 		free(s_persist_data);
@@ -291,7 +291,7 @@ set_persist_data(lua_State *L) {
 }
 
 static int
-get_persist_data(lua_State *L) {
+get_persist_data(lua_State* L) {
 	lua_pushstring(L, s_persist_data);
 	return 1;
 }

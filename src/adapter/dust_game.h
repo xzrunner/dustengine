@@ -4,7 +4,7 @@
 #include <lua.h>
 
 struct game {
-	lua_State *L;
+	lua_State* L;
 	float real_time;
 	float logic_time;
 	float hold_update_time;
@@ -16,7 +16,7 @@ lua_State * dust_lua_init(struct game *);
 void dust_game_exit(struct game *);
 void dust_close_lua(struct game *);
 lua_State *  dust_game_lua(struct game *);
-void dust_handle_error(lua_State *L, const char *err_type, const char *msg);
+void dust_handle_error(lua_State* L, const char *err_type, const char *msg);
 void dust_game_logicframe(int);
 void dust_game_start(struct game *);
 void dust_game_update(struct game *, float dt);
@@ -30,7 +30,7 @@ void dust_game_resume(struct game* G);
 
 int dust_game_handle_url(struct game *G, const char* url);
 
-void dust_call_lua(lua_State *L, int n, int r);
+void dust_call_lua(lua_State* L, int n, int r);
 
 void dust_on_size(int w, int h);
 

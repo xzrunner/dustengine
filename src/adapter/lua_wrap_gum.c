@@ -109,6 +109,15 @@ lcompare_snapshot(lua_State* L) {
 	return 1;
 }
 
+static int
+lget_screen_size(lua_State* L) {
+	int w, h;
+	gum_get_screen_size(&w, &h);
+	lua_pushinteger(L, w);
+	lua_pushinteger(L, h);
+	return 2;
+}
+
 int
 luaopen_gum_c(lua_State* L) {
 	luaL_Reg l[] = {
@@ -123,6 +132,7 @@ luaopen_gum_c(lua_State* L) {
 		{ "pkg_set_tex_filepath", lpkg_set_tex_filepath },
 		{ "store_snapshot", lstore_snapshot },
 		{ "compare_snapshot", lcompare_snapshot },
+		{ "get_screen_size", lget_screen_size },
 		{ NULL, NULL },
 	};
 	luaL_newlib(L, l);
