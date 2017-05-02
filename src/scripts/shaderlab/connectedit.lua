@@ -48,9 +48,7 @@ function M.mousemoved(x, y)
 end
 
 function M.draw()
-	print("connect draw 0")
 	if M.pressed and M.xcurr and M.ycurr then
-	print("connect draw 1")		
 		local x1, y1 = M.pressed:GetOutputPos()
 		local x2 = M.xcurr
 		local y2 = M.ycurr

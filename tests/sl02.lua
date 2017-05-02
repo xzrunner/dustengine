@@ -2,6 +2,8 @@
 
 local dust = require "dust"
 local base = require "base"
+local ShaderLab = require 'dust.shaderlab'
+
 -- local render = require "ejoy3d.render.c"
 require "shaderlab"
 
@@ -9,7 +11,7 @@ local game = {}
 
 function game.load()
 	base.load()
-	
+
 	-- render.load_mesh("cone", 2, 1)
 	-- render.load_mesh("sphere", 1)
 
@@ -126,19 +128,35 @@ function game.load()
 end
 
 function game.update()
-	base.update()
+	shaderlab.update()
 end
 
 function game.draw()
-	base.draw()
+	ShaderLab.clear()
+
+	shaderlab.draw()
 end
 
 function game.touch(what, x, y)
-	base.touch(what, x, y)
+	if what == "BEGIN" then
+		shaderlab.mousepressed(x, y)	
+	elseif what == "END" then
+		shaderlab.mousereleased(x, y)	
+	elseif what == "RIGHT_BEGIN" then
+		shaderlab.rightmousepressed(x, y)
+	elseif what == "RIGHT_END" then
+		shaderlab.rightmousereleased(x, y)
+	elseif what == "MOVE" then
+		shaderlab.mousemoved(x, y)
+	end
 end
 
 function game.key(what, key)
-	base.key(what, key)
+	if what == "DOWN" then
+		shaderlab.keydown(key)
+	elseif what == "UP" then
+		shaderlab.keyup(key)
+	end
 end
 
 function game.message(id, state, sval, nval)

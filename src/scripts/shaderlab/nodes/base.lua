@@ -24,13 +24,9 @@ function M:Draw()
 		v:Draw()
 	end
 
-	print("base draw 0")
 	if self.output then
-	print("base draw 1")		
 		self.output:Draw()
-
 		for _,v in ipairs(self.output.connected) do
-	print("base draw 2")			
 			local x1, y1 = self:GetOutputPos()
 			local x2, y2 = v:GetPos()
 			Graphics.set_color(LINE_COLOR)
