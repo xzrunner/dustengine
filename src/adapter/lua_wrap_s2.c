@@ -368,6 +368,15 @@ ldraw_symbol(lua_State* L) {
 	return 0;
 }
 
+static int
+ldraw_symbol2(lua_State* L) {
+	const void* sym = lua_touserdata(L, 1);
+	float x = lua_tonumber(L, 2);
+	float y = lua_tonumber(L, 3);
+	s2_symbol_draw2(sym, x, y);
+	return 0;
+}
+
 /*
 	userdata sprite
 	table { .x .y .sx .sy .rot }
@@ -770,6 +779,7 @@ lmethod(lua_State* L) {
 		{ "sr", lsr },
  		{ "draw", ldraw },
 		{ "draw_symbol", ldraw_symbol },
+		{ "draw_symbol2", ldraw_symbol2 },
 		{ "draw_actor", ldraw_actor },
 		{ "draw_aabb", ldraw_aabb },
 		{ "update", lupdate },
@@ -1167,6 +1177,14 @@ _create_proxy(lua_State* L, void* spr) {
 	return proxy;
 }
 
+static int
+lnew_sym_model(lua_State* L) {
+	const char* surface = lua_touserdata(L, 1);
+	void* sym = gum_create_sym_model(surface);
+	lua_pushlightuserdata(L, sym);
+	return 1;
+}
+
 /*
 	userdata sprite_pack
 	integer id
@@ -1495,6 +1513,9 @@ int
 luaopen_s2_c(lua_State* L) {
 	luaL_Reg l[] = {
 		{ "get_actor_count", lget_actor_count },
+
+		{ "new_sym_model", lnew_sym_model },
+
 		{ "new_spr", lnew_spr },
 		{ "new_spr_by_id", lnew_spr_by_id },
 		{ "new_spr_from_file", lnew_spr_from_file },

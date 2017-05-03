@@ -3,15 +3,19 @@
 local dust = require "dust"
 local base = require "base"
 local ShaderLab = require 'dust.shaderlab'
+local Model = require 'dust.model'
 
 -- local render = require "ejoy3d.render.c"
 require "shaderlab"
 
 local game = {}
 
+local model
+
 function game.load()
 	base.load()
 
+	model = Model.create_model("cone", 2, 1)
 	-- render.load_mesh("cone", 2, 1)
 	-- render.load_mesh("sphere", 1)
 
@@ -133,6 +137,8 @@ end
 
 function game.draw()
 	ShaderLab.clear()
+
+	Model.draw_model(model, 0, 0)
 
 	shaderlab.draw()
 end

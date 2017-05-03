@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../../../../external/c99;../../../../../src/libraries/sprite2/include;../../../../../src/libraries/sprite2/include/sprite2;../../../../../src/libraries/cu;../../../../../src/libraries/fs;../../../../../src/libraries/logger;../../../../../src/libraries/simp/include;../../../../../src/libraries/ps;../../../../../src/libraries/mtrail;../../../../../src/libraries/sm;../../../../../src/libraries/shaderlab/include;../../../../../src/libraries/rigging;../../../../../src/libraries/rapidvg;../../../../../src/libraries/dtex;../../../../../src/libraries/gtxt;../../../../../src/libraries/unirender/include;../../../../../src/libraries/polymesh/include;../../../../../src/libraries/camera25;../../../../../src/libraries/gimg"
+				AdditionalIncludeDirectories="../../../../../external/c99;../../../../../src/libraries/sprite2/include;../../../../../src/libraries/sprite2/include/sprite2;../../../../../src/libraries/cu;../../../../../src/libraries/fs;../../../../../src/libraries/logger;../../../../../src/libraries/simp/include;../../../../../src/libraries/ps;../../../../../src/libraries/mtrail;../../../../../src/libraries/sm;../../../../../src/libraries/shaderlab/include;../../../../../src/libraries/rigging;../../../../../src/libraries/rapidvg;../../../../../src/libraries/dtex;../../../../../src/libraries/gtxt;../../../../../src/libraries/unirender/include;../../../../../src/libraries/polymesh/include;../../../../../src/libraries/camera25;../../../../../src/libraries/gimg;../../../../../src/libraries/model3/include"
 				PreprocessorDefinitions="WIN32;_DEBUG;_LIB"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -108,7 +108,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="../../../../../external/c99;../../../../../src/libraries/sprite2/include;../../../../../src/libraries/sprite2/include/sprite2;../../../../../src/libraries/cu;../../../../../src/libraries/fs;../../../../../src/libraries/logger;../../../../../src/libraries/simp/include;../../../../../src/libraries/ps;../../../../../src/libraries/mtrail;../../../../../src/libraries/sm;../../../../../src/libraries/shaderlab/include;../../../../../src/libraries/rigging;../../../../../src/libraries/rapidvg;../../../../../src/libraries/dtex;../../../../../src/libraries/gtxt;../../../../../src/libraries/unirender/include;../../../../../src/libraries/polymesh/include;../../../../../src/libraries/camera25;../../../../../src/libraries/gimg"
+				AdditionalIncludeDirectories="../../../../../external/c99;../../../../../src/libraries/sprite2/include;../../../../../src/libraries/sprite2/include/sprite2;../../../../../src/libraries/cu;../../../../../src/libraries/fs;../../../../../src/libraries/logger;../../../../../src/libraries/simp/include;../../../../../src/libraries/ps;../../../../../src/libraries/mtrail;../../../../../src/libraries/sm;../../../../../src/libraries/shaderlab/include;../../../../../src/libraries/rigging;../../../../../src/libraries/rapidvg;../../../../../src/libraries/dtex;../../../../../src/libraries/gtxt;../../../../../src/libraries/unirender/include;../../../../../src/libraries/polymesh/include;../../../../../src/libraries/camera25;../../../../../src/libraries/gimg;../../../../../src/libraries/model3/include"
 				PreprocessorDefinitions="WIN32;NDEBUG;_LIB"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -1382,6 +1382,26 @@
 				</File>
 				<File
 					RelativePath="..\..\..\..\..\src\libraries\sprite2\include\sprite2\ProxySymbol.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="15.model"
+				>
+				<File
+					RelativePath="..\..\..\..\..\src\libraries\sprite2\source\sprites\ModelSprite.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\..\..\src\libraries\sprite2\include\sprite2\ModelSprite.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\..\..\src\libraries\sprite2\source\sprites\ModelSymbol.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\..\..\src\libraries\sprite2\include\sprite2\ModelSymbol.h"
 					>
 				</File>
 			</Filter>

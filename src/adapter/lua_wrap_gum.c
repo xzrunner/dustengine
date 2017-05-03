@@ -118,6 +118,14 @@ lget_screen_size(lua_State* L) {
 	return 2;
 }
 
+static int
+lcreate_sym_model(lua_State* L) {
+	void* surface = lua_touserdata(L, 1);
+	void* model = gum_create_sym_model(surface);
+	lua_pushlightuserdata(L, model);
+	return 1;
+}
+
 int
 luaopen_gum_c(lua_State* L) {
 	luaL_Reg l[] = {
@@ -133,6 +141,9 @@ luaopen_gum_c(lua_State* L) {
 		{ "store_snapshot", lstore_snapshot },
 		{ "compare_snapshot", lcompare_snapshot },
 		{ "get_screen_size", lget_screen_size },
+
+		{ "create_sym_model", lcreate_sym_model },
+
 		{ NULL, NULL },
 	};
 	luaL_newlib(L, l);

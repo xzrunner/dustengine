@@ -87,4 +87,6 @@ gum.release_pkg_after_last_tag = c.release_pkg_after_last_tag
 
 gum.get_screen_size = c.get_screen_size
 
+gum.create_sym_model = c.create_sym_model
+
 return gum

@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../../../../src/libraries/ps;../../../../../src/libraries/mtrail;../../../../../src/libraries/dtex;../../../../../src/libraries/dtex2/include;../../../../../src/libraries/logger;../../../../../src/libraries/gtxt;../../../../../src/libraries/rapidvg;../../../../../src/libraries/shaderlab/include;../../../../../src/libraries/glp;../../../../../src/libraries/camera25;../../../../../src/libraries/sm;../../../../../src/libraries/gum/include;../../../../../src/libraries/sprite2/include;../../../../../src/libraries/cu;../../../../../external/json/include;../../../../../external/c99;../../../../../external/lua/include"
+				AdditionalIncludeDirectories="../../../../../src/libraries/ps;../../../../../src/libraries/mtrail;../../../../../src/libraries/dtex;../../../../../src/libraries/dtex2/include;../../../../../src/libraries/logger;../../../../../src/libraries/gtxt;../../../../../src/libraries/rapidvg;../../../../../src/libraries/shaderlab/include;../../../../../src/libraries/glp;../../../../../src/libraries/camera25;../../../../../src/libraries/sm;../../../../../src/libraries/gum/include;../../../../../src/libraries/model3/include;../../../../../src/libraries/sprite2/include;../../../../../src/libraries/cu;../../../../../external/json/include;../../../../../external/c99;../../../../../external/lua/include"
 				PreprocessorDefinitions="WIN32;_DEBUG;_LIB"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -108,7 +108,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="../../../../../src/libraries/ps;../../../../../src/libraries/mtrail;../../../../../src/libraries/dtex;../../../../../src/libraries/dtex2/include;../../../../../src/libraries/logger;../../../../../src/libraries/gtxt;../../../../../src/libraries/rapidvg;../../../../../src/libraries/shaderlab/include;../../../../../src/libraries/glp;../../../../../src/libraries/camera25;../../../../../src/libraries/sm;../../../../../src/libraries/gum/include;../../../../../src/libraries/sprite2/include;../../../../../src/libraries/cu;../../../../../external/json/include;../../../../../external/c99;../../../../../external/lua/include"
+				AdditionalIncludeDirectories="../../../../../src/libraries/ps;../../../../../src/libraries/mtrail;../../../../../src/libraries/dtex;../../../../../src/libraries/dtex2/include;../../../../../src/libraries/logger;../../../../../src/libraries/gtxt;../../../../../src/libraries/rapidvg;../../../../../src/libraries/shaderlab/include;../../../../../src/libraries/glp;../../../../../src/libraries/camera25;../../../../../src/libraries/sm;../../../../../src/libraries/gum/include;../../../../../src/libraries/model3/include;../../../../../src/libraries/sprite2/include;../../../../../src/libraries/cu;../../../../../external/json/include;../../../../../external/c99;../../../../../external/lua/include"
 				PreprocessorDefinitions="WIN32;NDEBUG;_LIB"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -196,6 +196,10 @@
 		</File>
 		<File
 			RelativePath="..\..\..\..\..\src\adapter\lua_wrap_gum.c"
+			>
+		</File>
+		<File
+			RelativePath="..\..\..\..\..\src\adapter\lua_wrap_m3.c"
 			>
 		</File>
 		<File

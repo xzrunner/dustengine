@@ -21,6 +21,7 @@ dust_sl_init() {
 	sl_create_shader(ST_BLEND);
 	sl_create_shader(ST_FILTER);
 	sl_create_shader(ST_MASK);
+	sl_create_shader(ST_MODEL3);
 
 	sl_filter_set_heat_haze_factor(0.025f, 0.25f);
 

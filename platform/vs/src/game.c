@@ -25,6 +25,7 @@ int luaopen_sl_c(lua_State* L);
 int luaopen_c25_c(lua_State* L);
 int luaopen_stat_c(lua_State* L);
 int luaopen_s2_c(lua_State* L);
+int luaopen_m3_c(lua_State* L);
 int luaopen_gum_c(lua_State* L);
 
 #define WIDTH 1024
@@ -94,6 +95,7 @@ game_init(int argc, char* argv[]) {
 	reg_lua_lib(L, luaopen_c25_c, "camera25.c");
 	reg_lua_lib(L, luaopen_stat_c, "stat.c");
 	reg_lua_lib(L, luaopen_s2_c, "sprite2.c");
+	reg_lua_lib(L, luaopen_m3_c, "model3.c");
 	reg_lua_lib(L, luaopen_gum_c, "gum.c");
 
 	lua_pushcfunction(L, traceback);
