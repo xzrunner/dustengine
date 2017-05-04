@@ -229,6 +229,14 @@
 				RelativePath="..\..\..\..\..\src\libraries\model3\include\model3\AABB.inl"
 				>
 			</File>
+			<File
+				RelativePath="..\..\..\..\..\src\libraries\model3\source\Camera.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\..\src\libraries\model3\include\model3\Camera.h"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="utility"

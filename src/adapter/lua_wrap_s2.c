@@ -424,7 +424,7 @@ ldraw_aabb(lua_State* L) {
 static int
 lupdate(lua_State* L) {
 	void* actor = _actor(L);
-	s2_actor_update(actor);
+	s2_actor_update(actor, false);
 	return 0;
 }
 
