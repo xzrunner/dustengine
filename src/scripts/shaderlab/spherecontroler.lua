@@ -1,20 +1,19 @@
--- local quaternion = require "ejoy3d.quaternion"
--- local render = require "ejoy3d.render.c"
+local Camera3 = require "dust.camera3"
 
 local M = {}
 
 local WIDTH = 800
 local HEIGHT = 600
 
--- local orientation = quaternion.new({0,0,0,1})
--- render.set_orientation(orientation)
 local sx, sy
-local previous
 local rotating = false	
 
+local cam = Camera3()
+cam:translate(0, 0, -3)
+
 local function maptosphere(x, y)
-	local width = WIDTH
-	local height = HEIGHT
+	local Gum = require "dust.gum"
+	local width, height = Gum.get_screen_size()
 
 	local trackball_radius = width / 3
 	local centerx = width * 0.5
@@ -27,7 +26,7 @@ local function maptosphere(x, y)
 	local radius = trackball_radius
 	local safe_radius = radius - 1
 	if dx*dx+dy*dy > safe_radius*safe_radius then
-		local theta = math.atan2(dy, dx)
+		local theta = math.atan(dy, dx)
 		dx = safe_radius * math.cos(theta)
 		dy = safe_radius * math.sin(theta)
 	end
@@ -41,7 +40,6 @@ function M.mousepressed(x, y)
 	rotating = true
 	sx = x
 	sy = y
-	previous = orientation			
 end
 
 function M.mousereleased(x, y)
@@ -51,10 +49,11 @@ end
 function M.mousemoved(x, y)
 	if rotating then
 		local s = maptosphere(sx, sy)
-		local e = maptosphere(x, y)
-		-- local delta = quaternion.create_from_vector(s, e)
-		-- orientation = quaternion.rotated(previous, delta)
-		-- render.set_orientation(orientation)			
+		local e = maptosphere(x, y)	
+		cam:rotate(s, e)
+		cam:bind()
+		sx = x
+		sy = y
 	end	
 end
 

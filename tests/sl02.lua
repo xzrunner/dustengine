@@ -5,7 +5,6 @@ local base = require "base"
 local ShaderLab = require 'dust.shaderlab'
 local Model = require 'dust.model'
 
--- local render = require "ejoy3d.render.c"
 require "shaderlab"
 
 local game = {}
@@ -16,8 +15,6 @@ function game.load()
 	base.load()
 
 	model = Model.create_model("cone", 2, 1)
-	-- render.load_mesh("cone", 2, 1)
-	-- render.load_mesh("sphere", 1)
 
 	-- N = NormalMatrix * Normal
 	local local2view = shaderlab.create("localtoview", 200, 100)

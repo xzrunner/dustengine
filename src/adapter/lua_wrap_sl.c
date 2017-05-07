@@ -1,6 +1,7 @@
 #include "dust_shaderlab.h"
 
 #include <c_wrap_sl.h>
+#include <sm_c_matrix.h>
 
 #include <lua.h>
 #include <lauxlib.h>
@@ -96,6 +97,24 @@ lclear_filter_time(lua_State* L) {
 	return 0;
 }
 
+static int
+lset_modelview3(lua_State* L) {
+	if (!lua_istable(L, 1)) {
+		return 0;
+	}
+
+	union sm_mat4 mat;
+	for (int i = 0; i < 16; ++i) {
+		lua_rawgeti(L, 1, i + 1);
+		mat.x[i] = luaL_checknumber(L, -1);
+	}
+	lua_pop(L, 16);
+
+	sl_on_modelview3(&mat);
+
+	return 0;
+}
+
 int
 luaopen_sl_c(lua_State* L) {
 	luaL_Reg l[] = {
@@ -112,6 +131,8 @@ luaopen_sl_c(lua_State* L) {
 		{ "set_filter_mode", lset_filter_mode },
 
 		{ "clear_filter_time", lclear_filter_time },
+
+		{ "set_modelview3", lset_modelview3 },
 
 		{ NULL, NULL },
 	};

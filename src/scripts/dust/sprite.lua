@@ -1,5 +1,5 @@
 local c = require "sprite2.c"
-local Camera = require "dust.camera"
+local Camera2 = require "dust.camera2"
 
 local gmatch = string.gmatch
 local method = c.method
@@ -14,8 +14,8 @@ local set = c.set
 local coord_scene = {x=0, y=0, scale=1}
 local coord_ui = {x=0, y=0, scale=1}
 
-local cam_scene = Camera()
-local cam_ui = Camera()
+local cam_scene = Camera2()
+local cam_ui = Camera2()
 
 local method_draw = method.draw
 local method_draw_symbol = method.draw_symbol

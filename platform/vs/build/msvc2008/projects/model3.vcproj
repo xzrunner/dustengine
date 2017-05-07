@@ -230,11 +230,19 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\..\src\libraries\model3\source\Camera.cpp"
+				RelativePath="..\..\..\..\..\src\libraries\model3\source\CameraQuat.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\..\src\libraries\model3\include\model3\Camera.h"
+				RelativePath="..\..\..\..\..\src\libraries\model3\include\model3\CameraQuat.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\..\src\libraries\model3\source\CameraUVN.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\..\src\libraries\model3\include\model3\CameraUVN.h"
 				>
 			</File>
 		</Filter>
