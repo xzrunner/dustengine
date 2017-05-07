@@ -9,7 +9,8 @@ local sx, sy
 local rotating = false	
 
 local cam = Camera3()
-cam:translate(0, 0, -3)
+-- cam:translate(0, 0, -3)
+cam:translate(0, 0, -30)
 
 local function maptosphere(x, y)
 	local Gum = require "dust.gum"

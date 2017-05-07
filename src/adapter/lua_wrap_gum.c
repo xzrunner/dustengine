@@ -120,9 +120,9 @@ lget_screen_size(lua_State* L) {
 
 static int
 lcreate_sym_model(lua_State* L) {
-	void* surface = lua_touserdata(L, 1);
-	void* model = gum_create_sym_model(surface);
-	lua_pushlightuserdata(L, model);
+	const void* model = lua_touserdata(L, 1);
+	void* sym = gum_create_sym_model(model);
+	lua_pushlightuserdata(L, sym);
 	return 1;
 }
 

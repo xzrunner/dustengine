@@ -67,10 +67,10 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="opengl32.lib glew32sd.lib OpenAL32.lib libmpg123d.lib pthreadVC2.lib freetype250_D.lib libcurl_imp.lib jsond.lib libjpegd.lib libpngd.lib lzmad.lib luad.lib rc4d.lib etcpackd.lib zlibd.lib libiconv.lib"
+				AdditionalDependencies="opengl32.lib glew32sd.lib OpenAL32.lib libmpg123d.lib pthreadVC2.lib freetype250_D.lib libcurl_imp.lib jsond.lib libjpegd.lib libpngd.lib lzmad.lib luad.lib rc4d.lib etcpackd.lib zlibd.lib libiconv.lib assimpd.lib"
 				OutputFile="..\tmp\dust\x86\Debug\dust.exe"
 				LinkIncremental="2"
-				AdditionalLibraryDirectories="../../../../../external/gl/lib;../../../../../external/openal32/lib;../../../../../external/mpg123/lib;../../../../../external/pthread/lib;../../../../../external/freetype/lib;../../../../../external/curl/lib;../../../../../external/json/lib;../../../../../external/libjpeg/lib;../../../../../external/libpng/lib;../../../../../external/lzma/lib;../../../../../external/lua/lib;../../../../../external/rc4/lib;../../../../../external/etcpack/lib;../../../../../external/zlib/lib;../../../../../external/libiconv/lib"
+				AdditionalLibraryDirectories="../../../../../external/gl/lib;../../../../../external/openal32/lib;../../../../../external/mpg123/lib;../../../../../external/pthread/lib;../../../../../external/freetype/lib;../../../../../external/curl/lib;../../../../../external/json/lib;../../../../../external/libjpeg/lib;../../../../../external/libpng/lib;../../../../../external/lzma/lib;../../../../../external/lua/lib;../../../../../external/rc4/lib;../../../../../external/etcpack/lib;../../../../../external/zlib/lib;../../../../../external/libiconv/lib;../../../../../external/assimp/lib"
 				GenerateDebugInformation="true"
 				ProgramDatabaseFile="..\tmp\dust\x86\Debug\dust.pdb"
 				SubSystem="1"

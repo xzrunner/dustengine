@@ -4,9 +4,14 @@ local s2 = require "sprite2.c"
 
 local m3 = {}
 
-function m3.create_model(type, ...)
-	local surface = c.create_surface(type, ...)
-	return Gum.create_sym_model(surface)
+function m3.create_model_from_surface(type, ...)
+	local model = c.create_model_from_surface(type, ...)
+	return Gum.create_sym_model(model)
+end
+
+function m3.create_model_from_file(filepath)
+	local model = c.create_model_from_file(filepath)
+	return Gum.create_sym_model(model)
 end
 
 function m3.draw_model(model, x, y)

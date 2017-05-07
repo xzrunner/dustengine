@@ -14,7 +14,9 @@ local model
 function game.load()
 	base.load()
 
-	model = Model.create_model("cone", 2, 1)
+	-- model = Model.create_model_from_surface("cone", 2, 1)
+	model = Model.create_model_from_file("tests/asset/models/trashcan.obj")
+	-- model = Model.create_model_from_file("tests/asset/models/soldier/meshes/soldier.X")
 
 	-- N = NormalMatrix * Normal
 	local local2view = shaderlab.create("localtoview", 200, 100)

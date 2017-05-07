@@ -8,37 +8,40 @@
 #include <string.h>
 
 static int
-lcreate_surface(lua_State* L) {
+lcreate_model_from_surface(lua_State* L) {
 	const char* type = luaL_checkstring(L, 1);
-	void* surface = NULL;
+	void* model = NULL;
 	if (strcmp(type, "cone") == 0) {
 		float height = luaL_optnumber(L, 2, 1);
 		float radius = luaL_optnumber(L, 3, 1);
-		surface = m3_create_cone(height, radius);
+		model = m3_create_cone(height, radius);
 	} else if (strcmp(type, "sphere") == 0) {
 		float radius = luaL_optnumber(L, 2, 1);
-		surface = m3_create_sphere(radius);
+		model = m3_create_sphere(radius);
 	} else if (strcmp(type, "torus") == 0) {
 		float major_radius = luaL_optnumber(L, 2, 1);
 		float minor_radius = luaL_optnumber(L, 3, 1);
-		surface = m3_create_torus(major_radius, minor_radius);
+		model = m3_create_torus(major_radius, minor_radius);
 	} else if (strcmp(type, "trefoi_knot") == 0) {
 		float scale = luaL_optnumber(L, 2, 1);
-		surface = m3_create_trefoi_knot(scale);
+		model = m3_create_trefoi_knot(scale);
 	} else if (strcmp(type, "mobius_strip") == 0) {
 		float scale = luaL_optnumber(L, 2, 1);
-		surface = m3_create_mobius_strip(scale);
+		model = m3_create_mobius_strip(scale);
 	} else if (strcmp(type, "klein_bottle") == 0) {
 		float scale = luaL_optnumber(L, 2, 1);
-		surface = m3_create_klein_bottle(scale);
+		model = m3_create_klein_bottle(scale);
 	}
+	lua_pushlightuserdata(L, model);
+	return 1;
+}
 
-	if (surface) {
-		lua_pushlightuserdata(L, surface);
-		return 1;
-	} else {
-		return 0;
-	}
+static int
+lcreate_model_from_file(lua_State* L) {
+	const char* filepath = luaL_checkstring(L, 1);
+	void* model = m3_create_model(filepath);
+	lua_pushlightuserdata(L, model);
+	return 1;
 }
 
 static int
@@ -131,7 +134,8 @@ lcam_get_mat(lua_State* L) {
 int
 luaopen_m3_c(lua_State* L) {
 	luaL_Reg l[] = {
-		{ "create_surface", lcreate_surface },
+		{ "create_model_from_surface", lcreate_model_from_surface },
+		{ "create_model_from_file", lcreate_model_from_file },
 
 		{ "cam_create", lcam_create },
 		{ "cam_release", lcam_release },
