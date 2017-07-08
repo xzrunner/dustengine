@@ -50,7 +50,8 @@ static int
 lcache_pkg_static_load(lua_State* L) {
 	void* cache = lua_touserdata(L, 1);
 	int pkg_id = lua_tointeger(L, 2);
-	dtex_cache_pkg_static_load(cache, pkg_id);
+	int lod = luaL_optinteger(L, 3, 0);
+	dtex_cache_pkg_static_load(cache, pkg_id, lod);
 	return 0;
 }
 

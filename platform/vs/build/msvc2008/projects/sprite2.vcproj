@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../../../../external/c99;../../../../../src/libraries/sprite2/include;../../../../../src/libraries/sprite2/include/sprite2;../../../../../src/libraries/cu;../../../../../src/libraries/fs;../../../../../src/libraries/logger;../../../../../src/libraries/simp/include;../../../../../src/libraries/ps;../../../../../src/libraries/mtrail;../../../../../src/libraries/sm;../../../../../src/libraries/shaderlab/include;../../../../../src/libraries/rigging;../../../../../src/libraries/rapidvg;../../../../../src/libraries/dtex;../../../../../src/libraries/gtxt;../../../../../src/libraries/unirender/include;../../../../../src/libraries/polymesh/include;../../../../../src/libraries/camera25;../../../../../src/libraries/gimg;../../../../../src/libraries/model3/include"
+				AdditionalIncludeDirectories="../../../../../external/c99;../../../../../src/libraries/sprite2/include;../../../../../src/libraries/sprite2/include/sprite2;../../../../../src/libraries/cu;../../../../../src/libraries/fs;../../../../../src/libraries/logger;../../../../../src/libraries/simp/include;../../../../../src/libraries/ps;../../../../../src/libraries/mtrail;../../../../../src/libraries/sm;../../../../../src/libraries/shaderlab/include;../../../../../src/libraries/rigging;../../../../../src/libraries/rapidvg;../../../../../src/libraries/dtex;../../../../../src/libraries/gtxt;../../../../../src/libraries/unirender/include;../../../../../src/libraries/polymesh/include;../../../../../src/libraries/camera25;../../../../../src/libraries/gimg;../../../../../src/libraries/glp;../../../../../src/libraries/model3/include"
 				PreprocessorDefinitions="WIN32;_DEBUG;_LIB"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -108,7 +108,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="../../../../../external/c99;../../../../../src/libraries/sprite2/include;../../../../../src/libraries/sprite2/include/sprite2;../../../../../src/libraries/cu;../../../../../src/libraries/fs;../../../../../src/libraries/logger;../../../../../src/libraries/simp/include;../../../../../src/libraries/ps;../../../../../src/libraries/mtrail;../../../../../src/libraries/sm;../../../../../src/libraries/shaderlab/include;../../../../../src/libraries/rigging;../../../../../src/libraries/rapidvg;../../../../../src/libraries/dtex;../../../../../src/libraries/gtxt;../../../../../src/libraries/unirender/include;../../../../../src/libraries/polymesh/include;../../../../../src/libraries/camera25;../../../../../src/libraries/gimg;../../../../../src/libraries/model3/include"
+				AdditionalIncludeDirectories="../../../../../external/c99;../../../../../src/libraries/sprite2/include;../../../../../src/libraries/sprite2/include/sprite2;../../../../../src/libraries/cu;../../../../../src/libraries/fs;../../../../../src/libraries/logger;../../../../../src/libraries/simp/include;../../../../../src/libraries/ps;../../../../../src/libraries/mtrail;../../../../../src/libraries/sm;../../../../../src/libraries/shaderlab/include;../../../../../src/libraries/rigging;../../../../../src/libraries/rapidvg;../../../../../src/libraries/dtex;../../../../../src/libraries/gtxt;../../../../../src/libraries/unirender/include;../../../../../src/libraries/polymesh/include;../../../../../src/libraries/camera25;../../../../../src/libraries/gimg;../../../../../src/libraries/glp;../../../../../src/libraries/model3/include"
 				PreprocessorDefinitions="WIN32;NDEBUG;_LIB"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -425,6 +425,14 @@
 					>
 				</File>
 				<File
+					RelativePath="..\..\..\..\..\src\libraries\sprite2\source\sprites\ComplexFlatten.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\..\..\src\libraries\sprite2\include\sprite2\ComplexFlatten.h"
+					>
+				</File>
+				<File
 					RelativePath="..\..\..\..\..\src\libraries\sprite2\source\sprites\ComplexSprite.cpp"
 					>
 				</File>
@@ -549,7 +557,7 @@
 					</File>
 				</Filter>
 				<Filter
-					Name="curr"
+					Name="cache"
 					>
 					<File
 						RelativePath="..\..\..\..\..\src\libraries\sprite2\source\sprites\AnimCopy.cpp"
@@ -560,13 +568,49 @@
 						>
 					</File>
 					<File
-						RelativePath="..\..\..\..\..\src\libraries\sprite2\source\sprites\AnimCurr.cpp"
+						RelativePath="..\..\..\..\..\src\libraries\sprite2\source\sprites\AnimCtrl.cpp"
 						>
 					</File>
 					<File
-						RelativePath="..\..\..\..\..\src\libraries\sprite2\include\sprite2\AnimCurr.h"
+						RelativePath="..\..\..\..\..\src\libraries\sprite2\include\sprite2\AnimCtrl.h"
 						>
 					</File>
+					<File
+						RelativePath="..\..\..\..\..\src\libraries\sprite2\source\sprites\AnimCurrCreator.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\..\..\..\..\src\libraries\sprite2\include\sprite2\AnimCurrCreator.h"
+						>
+					</File>
+					<Filter
+						Name="curr"
+						>
+						<File
+							RelativePath="..\..\..\..\..\src\libraries\sprite2\source\sprites\AnimCurr.cpp"
+							>
+						</File>
+						<File
+							RelativePath="..\..\..\..\..\src\libraries\sprite2\include\sprite2\AnimCurr.h"
+							>
+						</File>
+						<File
+							RelativePath="..\..\..\..\..\src\libraries\sprite2\source\sprites\AnimFlattenCurr.cpp"
+							>
+						</File>
+						<File
+							RelativePath="..\..\..\..\..\src\libraries\sprite2\include\sprite2\AnimFlattenCurr.h"
+							>
+						</File>
+						<File
+							RelativePath="..\..\..\..\..\src\libraries\sprite2\source\sprites\AnimTreeCurr.cpp"
+							>
+						</File>
+						<File
+							RelativePath="..\..\..\..\..\src\libraries\sprite2\include\sprite2\AnimTreeCurr.h"
+							>
+						</File>
+					</Filter>
 				</Filter>
 			</Filter>
 			<Filter
@@ -972,6 +1016,26 @@
 					RelativePath="..\..\..\..\..\src\libraries\sprite2\include\sprite2\TrailSymbol.h"
 					>
 				</File>
+				<Filter
+					Name="wrap"
+					>
+					<File
+						RelativePath="..\..\..\..\..\src\libraries\sprite2\source\sprites\TrailEmitter.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\..\..\..\..\src\libraries\sprite2\include\sprite2\TrailEmitter.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\..\..\..\src\libraries\sprite2\source\sprites\TrailEmitterCfg.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\..\..\..\..\src\libraries\sprite2\include\sprite2\TrailEmitterCfg.h"
+						>
+					</File>
+				</Filter>
 			</Filter>
 			<Filter
 				Name="03.icon"
@@ -1133,10 +1197,6 @@
 				Name="sprite"
 				>
 				<File
-					RelativePath="..\..\..\..\..\src\libraries\sprite2\include\sprite2\S2_Message.h"
-					>
-				</File>
-				<File
 					RelativePath="..\..\..\..\..\src\libraries\sprite2\source\sprites\S2_Sprite.cpp"
 					>
 				</File>
@@ -1146,26 +1206,6 @@
 				</File>
 				<File
 					RelativePath="..\..\..\..\..\src\libraries\sprite2\include\sprite2\S2_Sprite.inl"
-					>
-				</File>
-				<File
-					RelativePath="..\..\..\..\..\src\libraries\sprite2\source\sprites\SprDefault.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\..\..\..\src\libraries\sprite2\include\sprite2\SprDefault.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\..\..\..\src\libraries\sprite2\source\sprites\SprLUT.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\..\..\..\src\libraries\sprite2\include\sprite2\SprLUT.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\..\..\..\src\libraries\sprite2\include\sprite2\VisitResult.h"
 					>
 				</File>
 				<Filter
@@ -1240,6 +1280,22 @@
 					Name="component"
 					>
 					<File
+						RelativePath="..\..\..\..\..\src\libraries\sprite2\include\sprite2\S2_Message.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\..\..\..\src\libraries\sprite2\source\sprites\SprActors.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\..\..\..\..\src\libraries\sprite2\include\sprite2\SprActors.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\..\..\..\src\libraries\sprite2\include\sprite2\SprActors.inl"
+						>
+					</File>
+					<File
 						RelativePath="..\..\..\..\..\src\libraries\sprite2\source\sprites\SprGeo.cpp"
 						>
 					</File>
@@ -1268,6 +1324,38 @@
 						>
 					</File>
 				</Filter>
+				<Filter
+					Name="utility"
+					>
+					<File
+						RelativePath="..\..\..\..\..\src\libraries\sprite2\source\sprites\SprDefault.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\..\..\..\..\src\libraries\sprite2\include\sprite2\SprDefault.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\..\..\..\src\libraries\sprite2\source\sprites\SprLUT.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\..\..\..\..\src\libraries\sprite2\include\sprite2\SprLUT.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\..\..\..\src\libraries\sprite2\source\sprites\SprNameMap.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\..\..\..\..\src\libraries\sprite2\include\sprite2\SprNameMap.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\..\..\..\src\libraries\sprite2\include\sprite2\VisitResult.h"
+						>
+					</File>
+				</Filter>
 			</Filter>
 			<Filter
 				Name="symbol"
@@ -1289,11 +1377,11 @@
 				Name="actor"
 				>
 				<File
-					RelativePath="..\..\..\..\..\src\libraries\sprite2\source\sprites\ActorAABB.cpp"
+					RelativePath="..\..\..\..\..\src\libraries\sprite2\source\sprites\ActorDefault.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\..\..\..\src\libraries\sprite2\include\sprite2\ActorAABB.h"
+					RelativePath="..\..\..\..\..\src\libraries\sprite2\include\sprite2\ActorDefault.h"
 					>
 				</File>
 				<File
@@ -1336,6 +1424,26 @@
 						>
 					</File>
 				</Filter>
+				<Filter
+					Name="aabb"
+					>
+					<File
+						RelativePath="..\..\..\..\..\src\libraries\sprite2\source\sprites\AABBHelper.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\..\..\..\..\src\libraries\sprite2\include\sprite2\AABBHelper.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\..\..\..\src\libraries\sprite2\source\sprites\ActorAABB.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\..\..\..\..\src\libraries\sprite2\include\sprite2\ActorAABB.h"
+						>
+					</File>
+				</Filter>
 			</Filter>
 			<Filter
 				Name="flatten"
@@ -1346,6 +1454,14 @@
 				</File>
 				<File
 					RelativePath="..\..\..\..\..\src\libraries\sprite2\include\sprite2\Flatten.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\..\..\src\libraries\sprite2\source\sprites\FlattenMgr.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\..\..\src\libraries\sprite2\include\sprite2\FlattenMgr.h"
 					>
 				</File>
 			</Filter>
@@ -1445,6 +1561,86 @@
 				RelativePath="..\..\..\..\..\src\libraries\sprite2\include\sprite2\s2_trans_color.inl"
 				>
 			</File>
+			<File
+				RelativePath="..\..\..\..\..\src\libraries\sprite2\source\sprites\StringHelper.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\..\src\libraries\sprite2\include\sprite2\StringHelper.h"
+				>
+			</File>
+			<Filter
+				Name="stat"
+				>
+				<File
+					RelativePath="..\..\..\..\..\src\libraries\sprite2\source\sprites\StatDrawCall.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\..\..\src\libraries\sprite2\include\sprite2\StatDrawCall.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\..\..\src\libraries\sprite2\source\utility\StatImages.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\..\..\src\libraries\sprite2\include\sprite2\StatImages.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\..\..\src\libraries\sprite2\source\utility\StatOverdraw.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\..\..\src\libraries\sprite2\include\sprite2\StatOverdraw.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\..\..\src\libraries\sprite2\source\sprites\StatPingPong.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\..\..\src\libraries\sprite2\include\sprite2\StatPingPong.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\..\..\src\libraries\sprite2\source\sprites\StatSprCount.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\..\..\src\libraries\sprite2\include\sprite2\StatSprCount.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\..\..\src\libraries\sprite2\source\sprites\StatSymCount.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\..\..\src\libraries\sprite2\include\sprite2\StatSymCount.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\..\..\src\libraries\sprite2\source\utility\StatSymDraw.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\..\..\src\libraries\sprite2\include\sprite2\StatSymDraw.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\..\..\src\libraries\sprite2\include\sprite2\StatSymType.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\..\..\src\libraries\sprite2\source\utility\StatTopNodes.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\..\..\src\libraries\sprite2\include\sprite2\StatTopNodes.h"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="render"
@@ -1458,6 +1654,14 @@
 				</File>
 				<File
 					RelativePath="..\..\..\..\..\src\libraries\sprite2\include\sprite2\DrawBlend.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\..\..\src\libraries\sprite2\source\sprites\DrawDownsample.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\..\..\src\libraries\sprite2\include\sprite2\DrawDownsample.h"
 					>
 				</File>
 				<File

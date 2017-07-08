@@ -167,6 +167,14 @@
 			>
 		</File>
 		<File
+			RelativePath="..\..\..\..\..\src\libraries\ds\ds_imap.c"
+			>
+		</File>
+		<File
+			RelativePath="..\..\..\..\..\src\libraries\ds\ds_imap.h"
+			>
+		</File>
+		<File
 			RelativePath="..\..\..\..\..\src\libraries\ds\ds_stack.c"
 			>
 		</File>

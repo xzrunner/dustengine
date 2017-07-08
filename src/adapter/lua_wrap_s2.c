@@ -167,7 +167,7 @@ lfetch(lua_State* L) {
 	void* child = s2_actor_fetch_child(actor, name);
 	if (child) {
 		void* ret = s2_actor_create(actor, child);
-		ret = s2_actor_get_anchor_real(ret);
+		ret = s2_actor_get_anchor_real_for_fetch(ret);
 		_return_proxy(L, ret);
 		return 1;
 	} else {
@@ -182,7 +182,7 @@ lfetch_by_index(lua_State* L) {
 	void* child = s2_actor_fetch_child_by_index(actor, index);
 	if (child) {
 		void* ret = s2_actor_create(actor, child);
-		ret = s2_actor_get_anchor_real(ret);
+		ret = s2_actor_get_anchor_real_for_fetch(ret);
 		_return_proxy(L, ret);
 		return 1;
 	} else {
@@ -242,13 +242,6 @@ ldtex_c2_force_cached_set_dirty(lua_State* L) {
 	void* spr = _spr(L);
 	bool dirty = lua_toboolean(L, 2);
 	s2_spr_set_dtex_force_cached_dirty(spr, dirty);
-	return 0;
-}
-
-static int
-lbuild_flatten(lua_State* L) {
-	void* actor = _actor(L);
-	s2_actor_build_flatten(actor);
 	return 0;
 }
 
@@ -341,8 +334,16 @@ ldraw(lua_State* L) {
 	const void* cam = lua_touserdata(L, 3);
 	_filling_region_from_cam(cam, &r);
 
+	bool disable_p3d = lua_toboolean(L, 4);
+	int min_edge = luaL_optnumber(L, 5, 0);
+
+	int flag = 0;
+	if (disable_p3d) {
+		flag |= S2_DISABLE_DRAW_PARTICLE3D;
+	}
+
 	s2_spr_draw(actor, srt.trans_x, srt.trans_y, srt.rot, srt.scale_x, srt.scale_y,
-		r.xmin, r.ymin, r.xmax, r.ymax);
+		r.xmin, r.ymin, r.xmax, r.ymax, flag, min_edge);
 
 	return 0;
 }
@@ -763,8 +764,6 @@ lmethod(lua_State* L) {
  		{ "dtex_c2_force_cached", ldtex_c2_force_cached },
  		{ "dtex_c2_force_cached_set_dirty", ldtex_c2_force_cached_set_dirty },
 
-		{ "build_flatten", lbuild_flatten },
-
 		{ NULL, NULL },
 	};
 	luaL_newlib(L,l);
@@ -943,7 +942,7 @@ lgetcolormap(lua_State* L) {
 static int
 lget_force_inherit_frame(lua_State* L) {
 	void* actor = _actor(L);
-	bool force = s2_actor_get_force_update(actor);
+	bool force = s2_spr_get_force_update(actor);
 	lua_pushboolean(L, force);
 	return 1;
 }
@@ -1008,7 +1007,7 @@ static int
 lsetaction(lua_State* L) {
 	void* actor = _actor(L);
 	const char* action = lua_tostring(L, 2);
-	s2_spr_set_action(actor, action);
+	s2_actor_set_action(actor, action);
 	return 0;
 }
 
@@ -1112,7 +1111,7 @@ static int
 lset_force_inherit_frame(lua_State* L) {
 	void* actor = _actor(L);
 	bool force = lua_toboolean(L, 2);
-	s2_actor_set_force_update(actor, force);
+	s2_spr_set_force_update(actor, force);
 	return 0;
 }
 
@@ -1195,7 +1194,8 @@ static int
 lnew_spr(lua_State* L) {
 	const char* pkg_str = lua_tostring(L, 1);
 	const char* spr_str = lua_tostring(L, 2);
-	void* spr = gum_create_spr(pkg_str, spr_str);
+	bool flatten = lua_toboolean(L, 3);
+	void* spr = gum_create_spr(pkg_str, spr_str, flatten);
 	if (!spr) {
 //		luaL_error(L, "fail to create spr: pkg %s, spr %s\n", pkg_str, spr_str);
 		return 0;
@@ -1268,7 +1268,8 @@ lreturn_spr_cached(lua_State* L) {
 static int
 lnew_spr_by_id(lua_State* L) {
 	int id = lua_tointeger(L, 1);
-	void* spr = gum_create_spr_by_id(id);
+	bool flatten = lua_toboolean(L, 2);
+	void* spr = gum_create_spr_by_id(id, flatten);
 	if (!spr) {
 		luaL_error(L, "fail to create spr: id %d\n", id);
 	}

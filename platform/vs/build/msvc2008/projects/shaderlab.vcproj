@@ -533,14 +533,26 @@
 				RelativePath="..\..\..\..\..\src\libraries\shaderlab\include\shaderlab\StackAllocator.h"
 				>
 			</File>
-			<File
-				RelativePath="..\..\..\..\..\src\libraries\shaderlab\source\utility\Statistics.cpp"
+			<Filter
+				Name="stat"
 				>
-			</File>
-			<File
-				RelativePath="..\..\..\..\..\src\libraries\shaderlab\include\shaderlab\Statistics.h"
-				>
-			</File>
+				<File
+					RelativePath="..\..\..\..\..\src\libraries\ShaderLab\source\utility\StatDrawCall.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\..\..\src\libraries\ShaderLab\include\shaderlab\StatDrawCall.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\..\..\src\libraries\shaderlab\source\utility\Statistics.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\..\..\src\libraries\shaderlab\include\shaderlab\Statistics.h"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="render"

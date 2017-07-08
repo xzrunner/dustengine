@@ -1,6 +1,5 @@
 #include "dust_game.h"
 #include "dust_shaderlab.h"
-#include "dust_statistics.h"
 
 #include <c_wrap_sl.h>
 #include <fault.h>
@@ -154,7 +153,6 @@ dust_game() {
 
 	s2_init();
 	dust_sl_init();
-	stat_init();
 
 	return G;
 }
@@ -316,10 +314,13 @@ dust_game_drawframe(struct game *G, float delta_time) {
 	call(G->L, 1, 0);
 	lua_settop(G->L, TOP_FUNCTION);
 	sl_flush();
-	gum_debug_draw();
 
-	stat_update();
-	stat_print();
+	gum_stat_no_stat_begin();
+	gum_debug_draw();
+	gum_stat_update();
+	gum_stat_print();
+	gum_stat_reset();
+	gum_stat_no_stat_end();
 }
 
 int

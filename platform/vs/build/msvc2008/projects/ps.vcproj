@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../../../../external/c99;../../../../../src/libraries/logger"
+				AdditionalIncludeDirectories="../../../../../external/c99;../../../../../src/libraries/logger;../../../../../src/libraries/ds"
 				PreprocessorDefinitions="WIN32;_DEBUG;_LIB"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -108,7 +108,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="../../../../../external/c99;../../../../../src/libraries/logger"
+				AdditionalIncludeDirectories="../../../../../external/c99;../../../../../src/libraries/logger;../../../../../src/libraries/ds"
 				PreprocessorDefinitions="WIN32;NDEBUG;_LIB"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"

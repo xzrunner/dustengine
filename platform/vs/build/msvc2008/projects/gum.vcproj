@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../../../../external/c99;../../../../../external/json/include;../../../../../external/boost/include;../../../../../src/libraries/gum/include;../../../../../src/libraries/gum/include/gum;../../../../../src/libraries/cu;../../../../../src/libraries/fs;../../../../../src/libraries/logger;../../../../../src/libraries/bimp/include;../../../../../src/libraries/simp/include;../../../../../src/libraries/timp/include;../../../../../src/libraries/ps;../../../../../src/libraries/mtrail;../../../../../src/libraries/sm;../../../../../src/libraries/shaderlab/include;../../../../../src/libraries/rigging;../../../../../src/libraries/rapidvg;../../../../../src/libraries/dtex;../../../../../src/libraries/dtex2/include;../../../../../src/libraries/gtxt;../../../../../src/libraries/sprite2/include;../../../../../src/libraries/model3/include;../../../../../src/libraries/gimg;../../../../../src/libraries/camera25;../../../../../src/libraries/unirender/include;../../../../../src/libraries/polymesh/include;../../../../../src/libraries/tasks"
+				AdditionalIncludeDirectories="../../../../../external/c99;../../../../../external/json/include;../../../../../external/boost/include;../../../../../src/libraries/gum/include;../../../../../src/libraries/gum/include/gum;../../../../../src/libraries/cu;../../../../../src/libraries/fs;../../../../../src/libraries/logger;../../../../../src/libraries/bimp/include;../../../../../src/libraries/simp/include;../../../../../src/libraries/timp/include;../../../../../src/libraries/ps;../../../../../src/libraries/mtrail;../../../../../src/libraries/sm;../../../../../src/libraries/shaderlab/include;../../../../../src/libraries/rigging;../../../../../src/libraries/rapidvg;../../../../../src/libraries/dtex;../../../../../src/libraries/dtex2/include;../../../../../src/libraries/gtxt;../../../../../src/libraries/sprite2/include;../../../../../src/libraries/model3/include;../../../../../src/libraries/gimg;../../../../../src/libraries/camera25;../../../../../src/libraries/glp;../../../../../src/libraries/unirender/include;../../../../../src/libraries/polymesh/include;../../../../../src/libraries/tasks"
 				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;NO_BOOST"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -108,7 +108,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="../../../../../external/c99;../../../../../external/json/include;../../../../../external/boost/include;../../../../../src/libraries/gum/include;../../../../../src/libraries/gum/include/gum;../../../../../src/libraries/cu;../../../../../src/libraries/fs;../../../../../src/libraries/logger;../../../../../src/libraries/bimp/include;../../../../../src/libraries/simp/include;../../../../../src/libraries/timp/include;../../../../../src/libraries/ps;../../../../../src/libraries/mtrail;../../../../../src/libraries/sm;../../../../../src/libraries/shaderlab/include;../../../../../src/libraries/rigging;../../../../../src/libraries/rapidvg;../../../../../src/libraries/dtex;../../../../../src/libraries/dtex2/include;../../../../../src/libraries/gtxt;../../../../../src/libraries/sprite2/include;../../../../../src/libraries/model3/include;../../../../../src/libraries/gimg;../../../../../src/libraries/camera25;../../../../../src/libraries/unirender/include;../../../../../src/libraries/polymesh/include;../../../../../src/libraries/tasks"
+				AdditionalIncludeDirectories="../../../../../external/c99;../../../../../external/json/include;../../../../../external/boost/include;../../../../../src/libraries/gum/include;../../../../../src/libraries/gum/include/gum;../../../../../src/libraries/cu;../../../../../src/libraries/fs;../../../../../src/libraries/logger;../../../../../src/libraries/bimp/include;../../../../../src/libraries/simp/include;../../../../../src/libraries/timp/include;../../../../../src/libraries/ps;../../../../../src/libraries/mtrail;../../../../../src/libraries/sm;../../../../../src/libraries/shaderlab/include;../../../../../src/libraries/rigging;../../../../../src/libraries/rapidvg;../../../../../src/libraries/dtex;../../../../../src/libraries/dtex2/include;../../../../../src/libraries/gtxt;../../../../../src/libraries/sprite2/include;../../../../../src/libraries/model3/include;../../../../../src/libraries/gimg;../../../../../src/libraries/camera25;../../../../../src/libraries/glp;../../../../../src/libraries/unirender/include;../../../../../src/libraries/polymesh/include;../../../../../src/libraries/tasks"
 				PreprocessorDefinitions="WIN32;NDEBUG;_LIB;NO_BOOST"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -230,6 +230,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\..\..\src\libraries\gum\source\dataset\PkgFileParser.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\..\src\libraries\gum\include\gum\PkgFileParser.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\..\..\src\libraries\gum\include\gum\Resource.h"
 				>
 			</File>
@@ -345,6 +353,42 @@
 				RelativePath="..\..\..\..\..\src\libraries\gum\include\gum\trans_color.h"
 				>
 			</File>
+			<Filter
+				Name="stat"
+				>
+				<File
+					RelativePath="..\..\..\..\..\src\libraries\gum\source\utility\StatFPS.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\..\..\src\libraries\gum\include\gum\StatFPS.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\..\..\src\libraries\gum\source\utility\Statistics.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\..\..\src\libraries\gum\include\gum\Statistics.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\..\..\src\libraries\gum\source\utility\StatScreen.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\..\..\src\libraries\gum\include\gum\StatScreen.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\..\..\src\libraries\gum\source\utility\StatTag.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\..\..\src\libraries\gum\include\gum\StatTag.h"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="sprite"
