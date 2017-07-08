@@ -1,5 +1,5 @@
-local base = require "dust.gui.widgets.base"
-local style = require "dust.gui.style"
+local base = require "gui.widgets.base"
+local style = require "gui.style"
 
 local M = setmetatable({}, base)
 M.__index = M

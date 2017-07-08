@@ -1,4 +1,4 @@
-require "dust.gui"
+require "gui"
 local base = require "shaderlab.nodes.base"
 local interface = require "shaderlab.nodes.interface"
 local parser = require "shaderlab.grammarparser"

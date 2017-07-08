@@ -1,4 +1,4 @@
-require "dust.gui"
+require "gui"
 
 local M = {}
 

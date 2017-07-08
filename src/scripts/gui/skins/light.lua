@@ -1,6 +1,6 @@
 local Gtxt = require "dust.gtxt"
 local Graphics = require "dust.graphics"
-local style = require "dust.gui.style"
+local style = require "gui.style"
 
 local skin = {}
 

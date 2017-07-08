@@ -1,4 +1,4 @@
-require "dust.gui"
+require "gui"
 -- local render = require "ejoy3d.render.c"
 local edit = require "shaderlab.connectedit"
 local ctrl = require "shaderlab.spherecontroler"

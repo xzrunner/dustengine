@@ -1,4 +1,4 @@
-local base = require "dust.gui.widgets.base"
+local base = require "gui.widgets.base"
 
 local M = setmetatable({}, base)
 M.__index = M
@@ -6,11 +6,12 @@ M.__index = M
 function M:initialize()
 	base.initialize(self)
 
-	self.type = "checkbox"
+	self.type = "button"
 	self.text = "Button"
-	self.width = 20
-	self.height = 20
-	self.checked = false
+	self.state = "released"
+	self.width = 80
+	self.height = 25
+	self.OnClick = nil
 end
 
 function M:Update()
@@ -19,7 +20,7 @@ function M:Update()
 	local update = self.UpdateCB
 	if update then
 		update(self)
-	end	
+	end
 end
 
 function M:Draw()
@@ -28,9 +29,9 @@ function M:Draw()
 	local drawfunc = self.DrawCB
 	if not drawfunc then
 		local skin = self:GetSkin()
-		drawfunc = skin.DrawCheckBox
+		drawfunc = skin.DrawButton
 	end
-	drawfunc(self)	
+	drawfunc(self)
 end
 
 function M:MousePressed(x, y)
@@ -38,10 +39,8 @@ function M:MousePressed(x, y)
 	if not self.visible then return ret end
 
 	if self:Touch(x, y) then
-		self.pressed = true
+		self.state = "pressed"
 		ret = true
-	else
-		self.pressed = false
 	end
 	return ret
 end
@@ -49,16 +48,29 @@ end
 function M:MouseReleased(x, y)
 	local ret = false
 	if not self.visible then return ret end
-	
-	if self:Touch(x, y) and self.pressed then
-		self.checked = not self.checked
+
+	if self.state ~= "pressed" then return ret end
+
+	if self:Touch(x, y) then
+		self.state = "released"
+		self.OnClick(self)
 		ret = true
-	end
+	end	
 	return ret
 end
 
 function M:MouseMoved(x, y)
 	local ret = false
+	if not self.visible then return ret end
+	
+	if self.state ~= "pressed" then return ret end
+
+	if self:Touch(x, y) then
+		self.state = "pressed"
+		ret = true
+	else
+		self.state = "released"
+	end
 	return ret
 end
 
@@ -79,14 +91,12 @@ function M:GetText(text)
 	return self.text
 end
 
-function M:GetChecked()
-	return self.checked
+function M:GetState()
+	return self.state
 end
 
 function M:Touch(x, y)
-	local worldwidth = 10
-	local width = self.width + (#self.text) * worldwidth
-	return gui.math.PosInRect(x,y,self.x,self.y,width,self.height)
+	return gui.math.PosInRect(x,y,self.x,self.y,self.width,self.height)
 end
 
 return M

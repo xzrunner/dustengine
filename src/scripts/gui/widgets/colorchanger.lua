@@ -1,4 +1,4 @@
-local base = require "dust.gui.widgets.base"
+local base = require "gui.widgets.base"
 local Graphics = require "dust.graphics"
 
 local M = setmetatable({}, base)

@@ -10,12 +10,12 @@ gui.config["DEFAULTSKIN"] = "Dark"
 gui.input_focus = nil
 
 function gui.register(container, path, name)
-	local class = require ("dust.gui." .. path)
+	local class = require ("gui." .. path)
 	container[name] = class
 end
 
 function gui.registerskin(path)
-	local skin = require ("dust.gui." .. path)
+	local skin = require ("gui." .. path)
 	local name = skin.name
 	local base = skin.base
 	if base then
@@ -35,8 +35,8 @@ function gui.registerskin(path)
 end
 
 function gui.load()
-	require "dust.gui.math"
-	require "dust.gui.util"
+	require "gui.math"
+	require "gui.util"
 
 	gui.widgets = {}
 	gui.register(gui.widgets, "widgets.base", "base")
