@@ -1,31 +1,31 @@
-[submodule "ext/camera25"]
+[submodule "ext/camera25/src/camera25"]
 	path = ext/camera25/src/camera25
 	url = git@github.com:xzrunner/camera25.git
-[submodule "ext/cu"]
+[submodule "ext/cu/src/cu"]
 	path = ext/cu/src/cu
 	url = git@github.com:xzrunner/cu.git
-[submodule "ext/ds"]
+[submodule "ext/ds/src/ds"]
 	path = ext/ds/src/ds
 	url = git@github.com:xzrunner/ds.git
 [submodule "ext/dtex2"]
 	path = ext/dtex2
 	url = git@github.com:xzrunner/dtex2.git
-[submodule "ext/fs"]
+[submodule "ext/fs/src/fs"]
 	path = ext/fs/src/fs
 	url = git@github.com:xzrunner/fs.git
-[submodule "ext/gimg"]
+[submodule "ext/gimg/src/gimg"]
 	path = ext/gimg/src/gimg
 	url = git@github.com:xzrunner/gimg.git
-[submodule "ext/glp"]
+[submodule "ext/glp/src/glp"]
 	path = ext/glp/src/glp
 	url = git@github.com:xzrunner/glp.git
-[submodule "ext/gtxt"]
+[submodule "ext/gtxt/src/gtxt"]
 	path = ext/gtxt/src/gtxt
 	url = git@github.com:xzrunner/gtxt.git
-[submodule "ext/logger"]
+[submodule "ext/logger/src/logger"]
 	path = ext/logger/src/logger
 	url = git@github.com:xzrunner/logger.git
-[submodule "ext/mtrail"]
+[submodule "ext/mtrail/src/mtrail"]
 	path = ext/mtrail/src/mtrail
 	url = git@github.com:xzrunner/mtrail.git
 [submodule "ext/pimg"]
@@ -34,22 +34,22 @@
 [submodule "ext/polymesh"]
 	path = ext/polymesh
 	url = git@github.com:xzrunner/polymesh.git
-[submodule "ext/ps"]
+[submodule "ext/ps/src/ps"]
 	path = ext/ps/src/ps
 	url = git@github.com:xzrunner/ps.git
-[submodule "ext/RapidVG"]
+[submodule "ext/rapidvg/src/rapidvg"]
 	path = ext/rapidvg/src/rapidvg
 	url = git@github.com:xzrunner/RapidVG.git
-[submodule "ext/rigging"]
+[submodule "ext/rigging/src/rigging"]
 	path = ext/rigging/src/rigging
 	url = git@github.com:xzrunner/rigging.git
 [submodule "ext/ShaderLab"]
 	path = ext/ShaderLab
 	url = git@github.com:xzrunner/ShaderLab.git
-[submodule "ext/sm"]
+[submodule "ext/sm/src/sm"]
 	path = ext/sm/src/sm
 	url = git@github.com:xzrunner/sm.git
-[submodule "ext/texpack"]
+[submodule "ext/texpack/src/texpack"]
 	path = ext/texpack/src/texpack
 	url = git@github.com:xzrunner/texpack.git
 [submodule "ext/unirender"]
