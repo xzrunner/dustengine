@@ -2,9 +2,19 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="..\..\..\sample\terrain\main.cpp" />
-    <ClCompile Include="..\..\..\sample\terrain\Application.cpp" />
+    <ClCompile Include="..\..\..\sample\terrain\CROAM.cpp">
+      <Filter>app</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\sample\terrain\Application.h" />
+    <ClInclude Include="..\..\..\sample\terrain\CROAM.h">
+      <Filter>app</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sample\terrain\randtab.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="app">
+      <UniqueIdentifier>{a0e0524e-cbc5-44cf-b965-6bcff0895606}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

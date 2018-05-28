@@ -12,9 +12,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\src\runtime\Application.cpp" />
+    <ClCompile Include="..\..\..\src\runtime\Application2D.cpp" />
+    <ClCompile Include="..\..\..\src\runtime\Application3D.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\src\runtime\Application.h" />
+    <ClInclude Include="..\..\..\src\runtime\Application2D.h" />
+    <ClInclude Include="..\..\..\src\runtime\Application3D.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectName>9.runtime</ProjectName>
@@ -64,7 +68,7 @@
     </PreBuildEvent>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\..\..\ext\cu\src;..\..\..\ext\sm\src\sm;..\..\..\ext\guard\include;..\..\..\ext\unirender\include;..\..\..\ext\shaderlab\include;..\..\..\ext\memmgr\include;..\..\..\ext\js\include;..\..\..\ext\serializerx\include;..\..\..\ext\facade\include;..\..\..\ext\external\glfw\include;..\..\..\ext\external\gl\include;..\..\..\ext\external\boost\include;..\..\..\ext\external\rapidjson\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\ext\cu\src;..\..\..\ext\sm\src\sm;..\..\..\ext\guard\include;..\..\..\ext\unirender\include;..\..\..\ext\shaderlab\include;..\..\..\ext\painting2\include;..\..\..\ext\painting3\include;..\..\..\ext\memmgr\include;..\..\..\ext\js\include;..\..\..\ext\serializerx\include;..\..\..\ext\facade\include;..\..\..\ext\external\glfw\include;..\..\..\ext\external\gl\include;..\..\..\ext\external\boost\include;..\..\..\ext\external\rapidjson\include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;DEBUG;GLEW_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -101,7 +105,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>..\..\..\ext\cu\src;..\..\..\ext\sm\src\sm;..\..\..\ext\guard\include;..\..\..\ext\unirender\include;..\..\..\ext\shaderlab\include;..\..\..\ext\memmgr\include;..\..\..\ext\js\include;..\..\..\ext\serializerx\include;..\..\..\ext\facade\include;..\..\..\ext\external\glfw\include;..\..\..\ext\external\gl\include;..\..\..\ext\external\boost\include;..\..\..\ext\external\rapidjson\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\ext\cu\src;..\..\..\ext\sm\src\sm;..\..\..\ext\guard\include;..\..\..\ext\unirender\include;..\..\..\ext\shaderlab\include;..\..\..\ext\painting2\include;..\..\..\ext\painting3\include;..\..\..\ext\memmgr\include;..\..\..\ext\js\include;..\..\..\ext\serializerx\include;..\..\..\ext\facade\include;..\..\..\ext\external\glfw\include;..\..\..\ext\external\gl\include;..\..\..\ext\external\boost\include;..\..\..\ext\external\rapidjson\include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;GLEW_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
