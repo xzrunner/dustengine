@@ -14,11 +14,14 @@
     <ClCompile Include="..\..\..\src\runtime\Application.cpp" />
     <ClCompile Include="..\..\..\src\runtime\Application2D.cpp" />
     <ClCompile Include="..\..\..\src\runtime\Application3D.cpp" />
+    <ClCompile Include="..\..\..\src\runtime\Cam3dOP.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\src\runtime\Application.h" />
     <ClInclude Include="..\..\..\src\runtime\Application2D.h" />
     <ClInclude Include="..\..\..\src\runtime\Application3D.h" />
+    <ClInclude Include="..\..\..\src\runtime\Cam3dOP.h" />
+    <ClInclude Include="..\..\..\src\runtime\EditOP.h" />
     <ClInclude Include="..\..\..\src\runtime\typedef.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

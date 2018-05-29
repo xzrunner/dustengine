@@ -5,12 +5,18 @@
     <ClCompile Include="..\..\..\sample\terrain\CROAM.cpp">
       <Filter>app</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\sample\terrain\HeightMap.cpp">
+      <Filter>app</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\sample\terrain\CROAM.h">
       <Filter>app</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\sample\terrain\randtab.h" />
+    <ClInclude Include="..\..\..\sample\terrain\HeightMap.h">
+      <Filter>app</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="app">

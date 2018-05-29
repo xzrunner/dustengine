@@ -124,6 +124,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\sample\terrain\CROAM.cpp" />
+    <ClCompile Include="..\..\..\sample\terrain\HeightMap.cpp" />
     <ClCompile Include="..\..\..\sample\terrain\main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -250,6 +251,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\sample\terrain\CROAM.h" />
+    <ClInclude Include="..\..\..\sample\terrain\HeightMap.h" />
     <ClInclude Include="..\..\..\sample\terrain\randtab.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
