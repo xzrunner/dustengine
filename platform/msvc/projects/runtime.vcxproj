@@ -19,6 +19,7 @@
     <ClInclude Include="..\..\..\src\runtime\Application.h" />
     <ClInclude Include="..\..\..\src\runtime\Application2D.h" />
     <ClInclude Include="..\..\..\src\runtime\Application3D.h" />
+    <ClInclude Include="..\..\..\src\runtime\typedef.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectName>9.runtime</ProjectName>
@@ -53,13 +54,13 @@
     <_ProjectFileVersion>15.0.27428.2015</_ProjectFileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>..\tmp\runtime\x86\Debug\</OutDir>
-    <IntDir>..\tmp\runtime\x86\Debug\obj\</IntDir>
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
     <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>..\tmp\runtime\x86\Release\</OutDir>
-    <IntDir>..\tmp\runtime\x86\Release\obj\</IntDir>
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -68,14 +69,14 @@
     </PreBuildEvent>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\..\..\ext\cu\src;..\..\..\ext\sm\src\sm;..\..\..\ext\guard\include;..\..\..\ext\unirender\include;..\..\..\ext\shaderlab\include;..\..\..\ext\painting2\include;..\..\..\ext\painting3\include;..\..\..\ext\memmgr\include;..\..\..\ext\js\include;..\..\..\ext\serializerx\include;..\..\..\ext\facade\include;..\..\..\ext\external\glfw\include;..\..\..\ext\external\gl\include;..\..\..\ext\external\boost\include;..\..\..\ext\external\rapidjson\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\ext\cu\src;..\..\..\ext\sm\src\sm;..\..\..\ext\guard\include;..\..\..\ext\glp\src\glp;..\..\..\ext\unirender\include;..\..\..\ext\shaderlab\include;..\..\..\ext\painting2\include;..\..\..\ext\painting3\include;..\..\..\ext\memmgr\include;..\..\..\ext\js\include;..\..\..\ext\serializerx\include;..\..\..\ext\facade\include;..\..\..\ext\external\glfw\include;..\..\..\ext\external\gl\include;..\..\..\ext\external\boost\include;..\..\..\ext\external\rapidjson\include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;DEBUG;GLEW_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <PrecompiledHeader />
-      <AssemblerListingLocation>..\tmp\runtime\x86\Debug</AssemblerListingLocation>
-      <ProgramDataBaseFileName>..\tmp\runtime\x86\Debug\runtime.pdb</ProgramDataBaseFileName>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <CallingConvention>Cdecl</CallingConvention>
@@ -100,18 +101,19 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <PreBuildEvent>
-      <Command>call ..\..\..\script\prebuild.bat</Command>
+      <Command>
+      </Command>
     </PreBuildEvent>
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>..\..\..\ext\cu\src;..\..\..\ext\sm\src\sm;..\..\..\ext\guard\include;..\..\..\ext\unirender\include;..\..\..\ext\shaderlab\include;..\..\..\ext\painting2\include;..\..\..\ext\painting3\include;..\..\..\ext\memmgr\include;..\..\..\ext\js\include;..\..\..\ext\serializerx\include;..\..\..\ext\facade\include;..\..\..\ext\external\glfw\include;..\..\..\ext\external\gl\include;..\..\..\ext\external\boost\include;..\..\..\ext\external\rapidjson\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\ext\cu\src;..\..\..\ext\sm\src\sm;..\..\..\ext\guard\include;..\..\..\ext\glp\src\glp;..\..\..\ext\unirender\include;..\..\..\ext\shaderlab\include;..\..\..\ext\painting2\include;..\..\..\ext\painting3\include;..\..\..\ext\memmgr\include;..\..\..\ext\js\include;..\..\..\ext\serializerx\include;..\..\..\ext\facade\include;..\..\..\ext\external\glfw\include;..\..\..\ext\external\gl\include;..\..\..\ext\external\boost\include;..\..\..\ext\external\rapidjson\include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;GLEW_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <PrecompiledHeader />
-      <AssemblerListingLocation>..\tmp\runtime\x86\Release</AssemblerListingLocation>
-      <ProgramDataBaseFileName>..\tmp\runtime\x86\Release\runtime.pdb</ProgramDataBaseFileName>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <CallingConvention>Cdecl</CallingConvention>

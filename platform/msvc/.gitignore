@@ -1,4 +1,10 @@
-build/
-Debug/
 .vs/
-*.user
+Debug/
+Release/
+
+projects/*
+
+!projects/runtime.vcxproj
+!projects/runtime.vcxproj.filters
+!projects/terrain.vcxproj
+!projects/terrain.vcxproj.filters
