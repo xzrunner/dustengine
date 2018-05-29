@@ -187,21 +187,10 @@ void CROAM::Draw() const
 	}
 }
 
-void CROAM::OnKeyPress(rt::KeyType key)
+void CROAM::UpdateModelView()
 {
-	switch (key)
-	{
-	case rt::KEY_UP:
-		m_camera.MoveToward(1);
-		shader->Use();
-		shader->SetMat4("u_modelview", m_camera.GetModelViewMat().x);
-		break;
-	case rt::KEY_DOWN:
-		m_camera.MoveToward(-1);
-		shader->Use();
-		shader->SetMat4("u_modelview", m_camera.GetModelViewMat().x);
-		break;
-	}
+	shader->Use();
+	shader->SetMat4("u_modelview", m_camera.GetModelViewMat().x);
 }
 
 void CROAM::RenderSub(int iLevel, float* fpVert1, float* fpVert2, float* fpVert3) const

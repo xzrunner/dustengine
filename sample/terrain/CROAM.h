@@ -18,7 +18,7 @@ public:
 	virtual bool Update() override { return false; }
 	virtual void Draw() const override;
 
-	virtual void OnKeyPress(rt::KeyType key) override;
+	virtual void UpdateModelView() override;
 
 private:
 	void RenderSub(int iLevel, float* fpVert1, float* fpVert2, float* fpVert3) const;

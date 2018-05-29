@@ -13,6 +13,8 @@ namespace facade { class RenderContext; }
 namespace rt
 {
 
+class EditOP;
+
 class Application
 {
 public:
@@ -23,9 +25,11 @@ public:
 	virtual bool Update() = 0;
 	virtual void Draw() const = 0;
 
-	virtual void OnKeyPress(KeyType key) = 0;
+	virtual void UpdateModelView() = 0;
 
 	GLFWwindow* GetWnd() { return m_wnd; }
+
+	EditOP* GetEditOP() { return m_editop.get(); }
 
 	void Flush();
 
@@ -40,6 +44,8 @@ protected:
 
 protected:
 	std::shared_ptr<facade::RenderContext> m_rc = nullptr;
+
+	std::unique_ptr<EditOP> m_editop = nullptr;
 
 private:
 	GLFWwindow* m_wnd = nullptr;

@@ -1,4 +1,5 @@
 #include "Application.h"
+#include "EditOP.h"
 
 #include <shaderlab/ShaderMgr.h>
 #include <shaderlab/Shape2Shader.h>
@@ -52,12 +53,96 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 		return;
 	}
 
+	auto op = app->GetEditOP();
+	if (!op) {
+		return;
+	}
+
 	switch (action)
 	{
 	case GLFW_PRESS:
 	case GLFW_REPEAT:
-		app->OnKeyPress(rt_key);
+		op->OnKeyDown(rt_key);
+		app->UpdateModelView();
 		break;
+	case GLFW_RELEASE:
+		op->OnKeyUp(rt_key);
+		app->UpdateModelView();
+		break;
+	}
+}
+
+void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
+{
+	rt::Application* app = static_cast<rt::Application*>(glfwGetWindowUserPointer(window));
+	if (!app) {
+		return;
+	}
+	auto op = app->GetEditOP();
+	if (!op) {
+		return;
+	}
+
+	double x, y;
+	glfwGetCursorPos(window, &x, &y);
+
+	if (button == GLFW_MOUSE_BUTTON_LEFT)
+	{
+		if (action == GLFW_PRESS) {
+			op->OnMouseLeftDown(float(x), float(y));
+			app->UpdateModelView();
+		} else if (action == GLFW_RELEASE) {
+			op->OnMouseLeftUp(float(x), float(y));
+			app->UpdateModelView();
+		}
+	}
+	else if (button == GLFW_MOUSE_BUTTON_RIGHT)
+	{
+		if (action == GLFW_PRESS) {
+			op->OnMouseRightDown(float(x), float(y));
+			app->UpdateModelView();
+		} else if (action == GLFW_RELEASE) {
+			op->OnMouseRightUp(float(x), float(y));
+			app->UpdateModelView();
+		}
+	}
+}
+
+void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
+{
+	rt::Application* app = static_cast<rt::Application*>(glfwGetWindowUserPointer(window));
+	if (app && app->GetEditOP())
+	{
+		double x, y;
+		glfwGetCursorPos(window, &x, &y);
+
+		app->GetEditOP()->OnMouseWheelRotation(
+			float(x), float(y), float(xoffset), float(yoffset));
+		app->UpdateModelView();
+	}
+}
+
+static void cursor_pos_callback(GLFWwindow* window, double xpos, double ypos)
+{
+	rt::Application* app = static_cast<rt::Application*>(glfwGetWindowUserPointer(window));
+	if (!app) {
+		return;
+	}
+	auto op = app->GetEditOP();
+	if (!op) {
+		return;
+	}
+
+	if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS ||
+		glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_RIGHT) == GLFW_PRESS)
+	{
+		op->OnMouseDrag(float(xpos), float(ypos));
+		app->UpdateModelView();
+	}
+	else
+	{
+		op->OnMouseMove(float(xpos), float(ypos));
+		app->UpdateModelView();
 	}
 }
 
@@ -108,6 +193,9 @@ bool Application::InitRender()
 	glfwMakeContextCurrent(window);
 
 	glfwSetKeyCallback(window, key_callback);
+	glfwSetMouseButtonCallback(window, mouse_button_callback);
+	glfwSetScrollCallback(window, scroll_callback);
+	glfwSetCursorPosCallback(window, cursor_pos_callback);
 
 	glfwSetWindowUserPointer(window, this);
 
