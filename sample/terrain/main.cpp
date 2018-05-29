@@ -1,4 +1,5 @@
 #include "CROAM.h"
+#include "HeightMap.h"
 
 #include <glp_loop.h>
 
@@ -6,7 +7,8 @@
 
 int main()
 {
-	terrain::CROAM app;
+	//terrain::CROAM app;
+	terrain::HeightMap app;
 
 	app.Init();
 
