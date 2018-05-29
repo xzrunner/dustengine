@@ -25,6 +25,42 @@ void error_callback(int error, const char* description)
 	fputs(description, stderr);
 }
 
+void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
+{
+	rt::Application* app = static_cast<rt::Application*>(glfwGetWindowUserPointer(window));
+	if (!app) {
+		return;
+	}
+
+	rt::KeyType rt_key = rt::KEY_UNKNOWN;
+	switch (key)
+	{
+	case GLFW_KEY_LEFT:
+		rt_key = rt::KEY_LEFT;
+		break;
+	case GLFW_KEY_RIGHT:
+		rt_key = rt::KEY_RIGHT;
+		break;
+	case GLFW_KEY_UP:
+		rt_key = rt::KEY_UP;
+		break;
+	case GLFW_KEY_DOWN:
+		rt_key = rt::KEY_DOWN;
+		break;
+	}
+	if (rt_key == rt::KEY_UNKNOWN) {
+		return;
+	}
+
+	switch (action)
+	{
+	case GLFW_PRESS:
+	case GLFW_REPEAT:
+		app->OnKeyPress(rt_key);
+		break;
+	}
+}
+
 }
 
 namespace rt
@@ -70,6 +106,10 @@ bool Application::InitRender()
 		return false;
 	}
 	glfwMakeContextCurrent(window);
+
+	glfwSetKeyCallback(window, key_callback);
+
+	glfwSetWindowUserPointer(window, this);
 
 	// Set this to true so GLEW knows to use a modern approach to retrieving function pointers and extensions
 	glewExperimental = GL_TRUE;

@@ -1,5 +1,7 @@
 #pragma once
 
+#include "typedef.h"
+
 #include <string>
 #include <memory>
 #include <functional>
@@ -20,6 +22,8 @@ public:
 	virtual void Init() = 0;
 	virtual bool Update() = 0;
 	virtual void Draw() const = 0;
+
+	virtual void OnKeyPress(KeyType key) = 0;
 
 	GLFWwindow* GetWnd() { return m_wnd; }
 

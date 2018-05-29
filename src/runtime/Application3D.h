@@ -13,7 +13,11 @@ class Application3D : public Application
 public:
 	Application3D(const std::string& title);
 
-private:
+protected:
+	void UpdateProjMat();
+	void UpdateModelViewMat();
+
+protected:
 	pt3::Camera   m_camera;
 	pt3::Viewport m_viewport;
 

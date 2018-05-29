@@ -1,4 +1,4 @@
-#include "Application3D.h"
+ #include "Application3D.h"
 
 #include <painting3/Blackboard.h>
 #include <painting3/WindowContext.h>
@@ -14,14 +14,24 @@ Application3D::Application3D(const std::string& title)
 	wc->Bind();
 	pt3::Blackboard::Instance()->SetWindowContext(wc);
 
-	// init proj
+	UpdateProjMat();
+	UpdateModelViewMat();
+}
+
+void Application3D::UpdateProjMat()
+{
+	auto wc = std::make_shared<pt3::WindowContext>();
+
 	wc->SetScreen(WIDTH, HEIGHT);
 	m_viewport.SetSize(WIDTH, HEIGHT);
 
 	m_camera.SetAspect((float)WIDTH / HEIGHT);
 	wc->SetProjection(m_camera.GetProjectionMat());
+}
 
-	// init model view
+void Application3D::UpdateModelViewMat()
+{
+	auto wc = std::make_shared<pt3::WindowContext>();
 	wc->SetModelView(m_camera.GetModelViewMat());
 }
 

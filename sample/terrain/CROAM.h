@@ -18,22 +18,19 @@ public:
 	virtual bool Update() override { return false; }
 	virtual void Draw() const override;
 
+	virtual void OnKeyPress(rt::KeyType key) override;
+
 private:
 	void RenderSub(int iLevel, float* fpVert1, float* fpVert2, float* fpVert3) const;
 
 private:
-	static const int LEVEL_MAX = 30;
+	float* m_level2dzsize;			//max midpoint displacement per level
 
-private:
-	sm::vec3 m_vecCameraEye;
+	unsigned int m_grid_texid;		//id from glGenTextures
+	float m_grid_texcoords[3][3];	//texture coordinates for three verts
 
-	float* m_fpLevel2dzsize;			//max midpoint displacement per level
-
-	unsigned int m_uiGridTexID;			//id from glGenTextures
-	float m_fGridtex_t[3][3];			//texture coordinates for three verts
-
-	mutable int m_iVertsPerFrame;		//stat variables
-	mutable int m_iTrisPerFrame;
+	mutable int m_verts_per_frame;	//stat variables
+	mutable int m_tris_per_frame;
 
 }; // CROAM
 
