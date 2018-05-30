@@ -66,11 +66,13 @@ CROAM::CROAM()
 {
 	auto& rc = ur::Blackboard::Instance()->GetRenderContext();
 
+	std::vector<std::string> textures;
+
 	CU_VEC<ur::VertexAttrib> layout;
 	layout.push_back(ur::VertexAttrib("position", 3, 4));
 	layout.push_back(ur::VertexAttrib("texcoord", 2, 4));
 
-	shader = std::make_unique<ur::Shader>(&rc, vs, fs, layout);
+	shader = std::make_unique<ur::Shader>(&rc, vs, fs, textures, layout);
 
 	size_t vertex_sz = sizeof(float) * (3 + 2);
 	size_t max_vertex = 4096;
@@ -120,7 +122,7 @@ void CROAM::Init()
 			if (k>255)
 				k = 255;
 
-			cGridTexData[4 * (y * 128 + x) + 0] = 30 + (std::sqrt(std::fabs(k))) / 290;
+			cGridTexData[4 * (y * 128 + x) + 0] = 30 + std::pow(k, 2) / 290;
 			cGridTexData[4 * (y * 128 + x) + 1] = k;
 			cGridTexData[4 * (y * 128 + x) + 2] = (k<128 ? 0 : (k - 128) * 2);
 			cGridTexData[4 * (y * 128 + x) + 3] = 0;
@@ -204,9 +206,9 @@ void CROAM::RenderSub(int iLevel, float* fpVert1, float* fpVert2, float* fpVert3
 	int  i;
 
 	//squared length of edge (fpVert1-fpVert3)
-	fSqrEdge = std::sqrt(std::fabs(fpVert3[0] - fpVert1[0])) +
-		       std::sqrt(std::fabs(fpVert3[1] - fpVert1[1])) +
-		       std::sqrt(std::fabs(fpVert3[2] - fpVert1[2]));
+	fSqrEdge = std::pow(fpVert3[0] - fpVert1[0], 2) +
+		       std::pow(fpVert3[1] - fpVert1[1], 2) +
+		       std::pow(fpVert3[2] - fpVert1[2], 2);
 
 	//compute split point of base edge
 	fNewVert[0] = (fpVert1[0] + fpVert3[0]) / 2.0f;
@@ -232,11 +234,11 @@ void CROAM::RenderSub(int iLevel, float* fpVert1, float* fpVert2, float* fpVert3
 
 	//distance calculation
 	auto& cam_pos = m_camera.GetPos();
-	fDistance = std::sqrt(std::fabs(fNewVert[0] - cam_pos.x)) +
-		        std::sqrt(std::fabs(fNewVert[1] - cam_pos.y)) +
-		        std::sqrt(std::fabs(fNewVert[2] - cam_pos.z));
+	fDistance = std::pow(fNewVert[0] - cam_pos.x, 2) +
+		        std::pow(fNewVert[1] - cam_pos.y, 2) +
+		        std::pow(fNewVert[2] - cam_pos.z, 2);
 
-	if (iLevel<LEVEL_MAX && fSqrEdge>fDistance*0.25f)
+	if (iLevel<LEVEL_MAX && fSqrEdge>fDistance*0.005f)
 	{
 		//render the children
 		RenderSub(iLevel + 1, fpVert1, fNewVert, fpVert2);
