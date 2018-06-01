@@ -4,6 +4,7 @@
 
 #include <painting3/Camera.h>
 #include <painting3/Viewport.h>
+#include <painting3/ViewFrustum.h>
 
 namespace rt
 {
@@ -18,8 +19,9 @@ protected:
 	void UpdateModelViewMat();
 
 protected:
-	pt3::Camera   m_camera;
-	pt3::Viewport m_viewport;
+	pt3::Camera      m_camera;
+	pt3::Viewport    m_viewport;
+	pt3::ViewFrustum m_frustum;
 
 }; // Application3D
 

@@ -9,7 +9,7 @@
 #include <shaderlab/RenderBuffer.h>
 #include <painting3/PrimitiveDraw.h>
 
-//#define BATCH_VERTICES
+#define BATCH_VERTICES
 
 namespace
 {
@@ -73,11 +73,11 @@ void main()
 
 )";
 
+const float POS_TRANS_OFF = 1.0f;
+const float POS_TRANS_SCALE = 1 / 50.0f;
 float pos_world2proj(float world)
 {
-	static const float off = -1.0f;
-	static const float scale = 1 / 50.0f;
-	return off + world * scale;
+	return POS_TRANS_OFF + world * POS_TRANS_SCALE;
 }
 
 struct Vertex
@@ -179,18 +179,23 @@ bool GeoMipMappingApp::Update()
 	for (int iz = 0; iz < m_num_patch_per_side; ++iz) {
 		for (int ix = 0; ix < m_num_patch_per_side; ++ix) {
 			auto& patch = const_cast<Patch&>(GetPatch(ix, iz));
+			int ipatch = iz * m_num_patch_per_side + ix;
 
 			float x = m_patch_size * (ix + 0.5f);
 			float z = m_patch_size * (iz + 0.5f);
 			float y = m_height_map_tex.GetHeight(x, z);
+			x = pos_world2proj(x);
+			z = pos_world2proj(z);
 
-			// todo culling
-			patch.visible = true;
+			// culling
+			if (m_frustum.CubeFrustumTest(x, y, z, m_patch_size * POS_TRANS_SCALE)) {
+				m_patches[ipatch].visible = true;
+			} else {
+				m_patches[ipatch].visible = false;
+			}
 
 			if (patch.visible)
 			{
-				x = pos_world2proj(x);
-				z = pos_world2proj(z);
 				patch.distance = sm::dis_pos3_to_pos3(m_camera.GetPos(), sm::vec3(x, y, z));
 				if (patch.distance < 0.5f) {
 					patch.lod = 0;
@@ -214,6 +219,8 @@ bool GeoMipMappingApp::Update()
 
 void GeoMipMappingApp::Draw() const
 {
+	m_frustum.CalculateViewFrustum(m_camera);
+
 	shader->Use();
 
 #ifdef BATCH_VERTICES
