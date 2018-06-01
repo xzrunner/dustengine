@@ -49,6 +49,9 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 		rt_key = rt::KEY_DOWN;
 		break;
 	}
+	if (key >= GLFW_KEY_A && key <= GLFW_KEY_Z) {
+		rt_key = rt::KeyType(key);
+	}
 	if (rt_key == rt::KEY_UNKNOWN) {
 		return;
 	}
@@ -63,6 +66,7 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 	case GLFW_PRESS:
 	case GLFW_REPEAT:
 		op->OnKeyDown(rt_key);
+		app->OnKeyDown(rt_key);
 		app->UpdateModelView();
 		break;
 	case GLFW_RELEASE:

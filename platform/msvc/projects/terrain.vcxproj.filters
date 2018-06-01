@@ -2,25 +2,52 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="..\..\..\sample\terrain\main.cpp" />
-    <ClCompile Include="..\..\..\sample\terrain\CROAM.cpp">
+    <ClCompile Include="..\..\..\sample\terrain\Texture.cpp">
+      <Filter>texture</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\sample\terrain\TileMapTex.cpp">
+      <Filter>texture</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\sample\terrain\HeightMapTex.cpp">
+      <Filter>texture</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\sample\terrain\HeightMapApp.cpp">
       <Filter>app</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\sample\terrain\HeightMap.cpp">
+    <ClCompile Include="..\..\..\sample\terrain\CroamApp.cpp">
+      <Filter>app</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\sample\terrain\GeoMipMappingApp.cpp">
       <Filter>app</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\sample\terrain\CROAM.h">
+    <ClInclude Include="..\..\..\sample\terrain\randtab.h" />
+    <ClInclude Include="..\..\..\sample\terrain\TileMapTex.h">
+      <Filter>texture</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sample\terrain\Texture.h">
+      <Filter>texture</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sample\terrain\HeightMapTex.h">
+      <Filter>texture</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sample\terrain\HeightMapApp.h">
       <Filter>app</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\sample\terrain\randtab.h" />
-    <ClInclude Include="..\..\..\sample\terrain\HeightMap.h">
+    <ClInclude Include="..\..\..\sample\terrain\CroamApp.h">
+      <Filter>app</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sample\terrain\GeoMipMappingApp.h">
       <Filter>app</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="app">
       <UniqueIdentifier>{a0e0524e-cbc5-44cf-b965-6bcff0895606}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="texture">
+      <UniqueIdentifier>{c99b9a2a-a873-4812-9a73-49811a7fae63}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -123,9 +123,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\sample\terrain\CROAM.cpp" />
-    <ClCompile Include="..\..\..\sample\terrain\HeightMap.cpp" />
+    <ClCompile Include="..\..\..\sample\terrain\CroamApp.cpp" />
+    <ClCompile Include="..\..\..\sample\terrain\GeoMipMappingApp.cpp" />
+    <ClCompile Include="..\..\..\sample\terrain\HeightMapApp.cpp" />
+    <ClCompile Include="..\..\..\sample\terrain\HeightMapTex.cpp" />
     <ClCompile Include="..\..\..\sample\terrain\main.cpp" />
+    <ClCompile Include="..\..\..\sample\terrain\Texture.cpp" />
+    <ClCompile Include="..\..\..\sample\terrain\TileMapTex.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\ext\anim\platform\msvc\projects\anim.vcxproj">
@@ -250,9 +254,13 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\sample\terrain\CROAM.h" />
-    <ClInclude Include="..\..\..\sample\terrain\HeightMap.h" />
+    <ClInclude Include="..\..\..\sample\terrain\CroamApp.h" />
+    <ClInclude Include="..\..\..\sample\terrain\GeoMipMappingApp.h" />
+    <ClInclude Include="..\..\..\sample\terrain\HeightMapApp.h" />
+    <ClInclude Include="..\..\..\sample\terrain\HeightMapTex.h" />
     <ClInclude Include="..\..\..\sample\terrain\randtab.h" />
+    <ClInclude Include="..\..\..\sample\terrain\Texture.h" />
+    <ClInclude Include="..\..\..\sample\terrain\TileMapTex.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

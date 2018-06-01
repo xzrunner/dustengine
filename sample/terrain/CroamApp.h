@@ -9,10 +9,10 @@
 namespace terrain
 {
 
-class CROAM : public rt::Application3D
+class CroamApp : public rt::Application3D
 {
 public:
-	CROAM();
+	CroamApp();
 
 	virtual void Init() override;
 	virtual bool Update() override { return false; }
@@ -32,6 +32,6 @@ private:
 	mutable int m_verts_per_frame;	//stat variables
 	mutable int m_tris_per_frame;
 
-}; // CROAM
+}; // CroamApp
 
 }

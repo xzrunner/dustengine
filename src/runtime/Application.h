@@ -27,6 +27,8 @@ public:
 
 	virtual void UpdateModelView() = 0;
 
+	virtual void OnKeyDown(KeyType key) {}
+
 	GLFWwindow* GetWnd() { return m_wnd; }
 
 	EditOP* GetEditOP() { return m_editop.get(); }
