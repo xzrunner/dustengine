@@ -1,4 +1,4 @@
-#include "HeightMapApp.h"
+#include "SplitOnlyROAMApp.h"
 #include "terr/TileMapTex.h"
 
 #include <facade/RenderContext.h>
@@ -8,7 +8,7 @@
 #include <shaderlab/Buffer.h>
 #include <shaderlab/RenderBuffer.h>
 #include <painting3/PrimitiveDraw.h>
-
+#include <SM_Calc.h>
 
 namespace
 {
@@ -72,17 +72,22 @@ void main()
 
 )";
 
-static const int SIZE = 128;
+static const int SIZE = 513;
+
+//const float POS_TRANS_OFF = 1.0f;
+const float POS_TRANS_OFF = 0;
+const float POS_TRANS_SCALE = 1 / 50.0f;
+float pos_world2proj(float world)
+{
+	return POS_TRANS_OFF + world * POS_TRANS_SCALE;
+}
 
 struct Vertex
 {
-	Vertex(size_t ix, size_t iz)
+	Vertex(float x, float z, float size)
 	{
-		static const float off = -1.0f;
-		static const float scale = 1 / 50.0f;
-
-		position.Set(off + ix * scale, 0, off + iz * scale);
-		texcoords.Set(ix / static_cast<float>(SIZE), iz / static_cast<float>(SIZE));
+		position.Set(pos_world2proj(x), 0, pos_world2proj(z));
+		texcoords.Set(x / size, z / size);
 	}
 
 	sm::vec3 position;
@@ -91,13 +96,32 @@ struct Vertex
 
 std::unique_ptr<ur::Shader>       shader = nullptr;
 std::unique_ptr<sl::RenderBuffer> vertex_buf = nullptr;
+
+void flush_vertex_buf(ur::DRAW_MODE mode)
+{
+	vertex_buf->Bind();
+	vertex_buf->Update();
+	ur::Blackboard::Instance()->GetRenderContext().DrawArrays(mode, 0, vertex_buf->Size());
+	vertex_buf->Clear();
+}
+
+void send_vertex(float x, float z, float size)
+{
+	if (vertex_buf->Add(&Vertex(x, z, size), 1)) {
+		flush_vertex_buf(ur::DRAW_TRIANGLES);
+	}
+}
+
 }
 
 namespace terrain
 {
 
-HeightMapApp::HeightMapApp()
-	: rt::Application3D("HeightMapApp")
+SplitOnlyROAMApp::SplitOnlyROAMApp()
+	: rt::Application3D("SplitOnlyROAMApp")
+	, m_height_map_tex(true)
+	, m_tri_pool(DEFAULT_POLYGON_TARGET * 3)
+	, m_roam(SIZE, m_tri_pool)
 {
 	auto& rc = ur::Blackboard::Instance()->GetRenderContext();
 
@@ -124,9 +148,37 @@ HeightMapApp::HeightMapApp()
 	shader->Use();
 	shader->SetMat4("u_projection", m_camera.GetProjectionMat().x);
 	shader->SetMat4("u_modelview", m_camera.GetModelViewMat().x);
+
+	// callback
+	terr::SplitOnlyROAM::CallbackFuncs cb;
+	cb.get_height = [&](int x, int y)->uint8_t
+	{
+		return m_height_map_tex.GetHeight(x, y);
+	};
+	cb.dis_to_camera = [&](int x, int y)->float
+	{
+		sm::vec3 p;
+		p.x = pos_world2proj(x);
+		p.y = m_height_map_tex.GetHeight(x, y) / 255.0f;
+		p.z = pos_world2proj(y);
+		return sm::dis_pos3_to_pos3(m_camera.GetPos(), p) / POS_TRANS_SCALE;
+	};
+	cb.sphere_in_frustum = [&](float x, float y, float radius)->bool
+	{
+		float px = pos_world2proj(x);
+		float py = m_height_map_tex.GetHeight(x, y) / 255.0f;
+		float pz = pos_world2proj(y);
+		float r = pos_world2proj(radius);
+		return m_frustum.SphereInFrustum(px, py, pz, r);
+	};
+	cb.send_vertex = [&](int x, int y)
+	{
+		send_vertex(x, y, SIZE);
+	};
+	m_roam.RegisterCallback(cb);
 }
 
-void HeightMapApp::Init()
+void SplitOnlyROAMApp::Init()
 {
 	//m_height_map_tex.LoadFromRawFile("height128.raw", SIZE);
 	//m_height_map_tex.MakeHeightMapPlasma(SIZE, 1.0f);
@@ -135,9 +187,17 @@ void HeightMapApp::Init()
 	m_tile_map_tex.Init();
 
 	m_detail_map_tex = std::make_unique<terr::Texture>("detailMap.tga");
+
+	m_roam.Init();
 }
 
-void HeightMapApp::Draw() const
+bool SplitOnlyROAMApp::Update()
+{
+	m_frustum.CalculateViewFrustum(m_camera);
+	return m_roam.Update();
+}
+
+void SplitOnlyROAMApp::Draw() const
 {
 	shader->Use();
 
@@ -145,40 +205,28 @@ void HeightMapApp::Draw() const
 	m_rc->GetUrRc().BindTexture(m_detail_map_tex->GetTexID(), 1);
 	m_tile_map_tex.Bind(2);
 
-	bool new_line = false;
-	for (size_t z = 0; z < SIZE - 1; ++z)
-	{
-		for (size_t x = 0; x < SIZE; ++x)
-		{
-			Vertex v0(x, z);
-			if (new_line)
-			{
-				vertex_buf->Add(&v0, 1);
-				new_line = false;
-			}
-			vertex_buf->Add(&v0, 1);
-
-			Vertex v1(x, z + 1);
-			vertex_buf->Add(&v1, 1);
-			if (x == SIZE - 1)
-			{
-				vertex_buf->Add(&v1, 1);
-				new_line = true;
-			}
-		}
-	}
-
-	vertex_buf->Bind();
-	vertex_buf->Update();
-	ur::Blackboard::Instance()->GetRenderContext().DrawArrays(
-		ur::DRAW_TRIANGLE_STRIP, 0, vertex_buf->Size());
-	vertex_buf->Clear();
+	m_roam.Draw();
+	flush_vertex_buf(ur::DRAW_TRIANGLES);
 }
 
-void HeightMapApp::UpdateModelView()
+void SplitOnlyROAMApp::UpdateModelView()
 {
 	shader->Use();
 	shader->SetMat4("u_modelview", m_camera.GetModelViewMat().x);
+}
+
+void SplitOnlyROAMApp::OnKeyDown(rt::KeyType key)
+{
+	auto& rc = ur::Blackboard::Instance()->GetRenderContext();
+	switch (key)
+	{
+	case rt::KEY_W:
+		rc.SetPolygonMode(ur::POLYGON_LINE);
+		break;
+	case rt::KEY_S:
+		rc.SetPolygonMode(ur::POLYGON_FILL);
+		break;
+	}
 }
 
 }

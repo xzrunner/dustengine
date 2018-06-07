@@ -76,7 +76,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>..\..\..\src;..\..\..\ext\cu\src;..\..\..\ext\ds\src\ds;..\..\..\ext\glp\src\glp;..\..\..\ext\sm\src\sm;..\..\..\ext\gimg\src\gimg;..\..\..\ext\guard\include;..\..\..\ext\pimg\include;..\..\..\ext\bs\include;..\..\..\ext\js\include;..\..\..\ext\memmgr\include;..\..\..\ext\unirender\include;..\..\..\ext\shaderlab\include;..\..\..\ext\painting2\include;..\..\..\ext\painting3\include;..\..\..\ext\serializerx\include;..\..\..\ext\nserializer\include;..\..\..\ext\node0\include;..\..\..\ext\node2\include;..\..\..\ext\facade\include;..\..\..\ext\external\rapidjson\include;..\..\..\ext\external\json\include;..\..\..\ext\external\boost\include;..\..\..\ext\external\glfw\include;..\..\..\ext\external\gl\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\src;..\..\..\ext\cu\src;..\..\..\ext\ds\src\ds;..\..\..\ext\glp\src\glp;..\..\..\ext\sm\src\sm;..\..\..\ext\gimg\src\gimg;..\..\..\ext\guard\include;..\..\..\ext\pimg\include;..\..\..\ext\bs\include;..\..\..\ext\js\include;..\..\..\ext\memmgr\include;..\..\..\ext\unirender\include;..\..\..\ext\shaderlab\include;..\..\..\ext\painting2\include;..\..\..\ext\painting3\include;..\..\..\ext\serializerx\include;..\..\..\ext\nserializer\include;..\..\..\ext\node0\include;..\..\..\ext\node2\include;..\..\..\ext\terr\include;..\..\..\ext\facade\include;..\..\..\ext\external\rapidjson\include;..\..\..\ext\external\json\include;..\..\..\ext\external\boost\include;..\..\..\ext\external\glfw\include;..\..\..\ext\external\gl\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalDependencies>libboost_filesystem-vc140-mt-gd-1_61.lib;libpng16d.lib;jpeg.lib;zlibd.lib;jsond.lib;freetype281d.lib;OpenAL32.lib;libmpg123d.lib;lzmad.lib;assimp-vc140-mtd.lib;OpenGL32.lib;glfw3d.lib;glew32sd.lib;user32.lib;gdi32.lib;Shell32.lib;lua.lib</AdditionalDependencies>
@@ -99,7 +99,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>..\..\..\src;..\..\..\ext\cu\src;..\..\..\ext\ds\src\ds;..\..\..\ext\glp\src\glp;..\..\..\ext\sm\src\sm;..\..\..\ext\gimg\src\gimg;..\..\..\ext\guard\include;..\..\..\ext\pimg\include;..\..\..\ext\bs\include;..\..\..\ext\js\include;..\..\..\ext\memmgr\include;..\..\..\ext\unirender\include;..\..\..\ext\shaderlab\include;..\..\..\ext\painting2\include;..\..\..\ext\painting3\include;..\..\..\ext\serializerx\include;..\..\..\ext\nserializer\include;..\..\..\ext\node0\include;..\..\..\ext\node2\include;..\..\..\ext\facade\include;..\..\..\ext\external\rapidjson\include;..\..\..\ext\external\json\include;..\..\..\ext\external\boost\include;..\..\..\ext\external\glfw\include;..\..\..\ext\external\gl\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\src;..\..\..\ext\cu\src;..\..\..\ext\ds\src\ds;..\..\..\ext\glp\src\glp;..\..\..\ext\sm\src\sm;..\..\..\ext\gimg\src\gimg;..\..\..\ext\guard\include;..\..\..\ext\pimg\include;..\..\..\ext\bs\include;..\..\..\ext\js\include;..\..\..\ext\memmgr\include;..\..\..\ext\unirender\include;..\..\..\ext\shaderlab\include;..\..\..\ext\painting2\include;..\..\..\ext\painting3\include;..\..\..\ext\serializerx\include;..\..\..\ext\nserializer\include;..\..\..\ext\node0\include;..\..\..\ext\node2\include;..\..\..\ext\terr\include;..\..\..\ext\facade\include;..\..\..\ext\external\rapidjson\include;..\..\..\ext\external\json\include;..\..\..\ext\external\boost\include;..\..\..\ext\external\glfw\include;..\..\..\ext\external\gl\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -123,13 +123,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\sample\terrain\CroamApp.cpp" />
+    <ClCompile Include="..\..\..\sample\terrain\SplitOnlyROAMApp.cpp" />
+    <ClCompile Include="..\..\..\sample\terrain\SimpleRoamApp.cpp" />
     <ClCompile Include="..\..\..\sample\terrain\GeoMipMappingApp.cpp" />
     <ClCompile Include="..\..\..\sample\terrain\HeightMapApp.cpp" />
-    <ClCompile Include="..\..\..\sample\terrain\HeightMapTex.cpp" />
     <ClCompile Include="..\..\..\sample\terrain\main.cpp" />
-    <ClCompile Include="..\..\..\sample\terrain\Texture.cpp" />
-    <ClCompile Include="..\..\..\sample\terrain\TileMapTex.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\ext\anim\platform\msvc\projects\anim.vcxproj">
@@ -240,6 +238,9 @@
     <ProjectReference Include="..\..\..\ext\stat\platform\msvc\projects\stat.vcxproj">
       <Project>{16868cde-6def-4136-8cc8-75212f34462e}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\ext\terr\platform\msvc\projects\terr.vcxproj">
+      <Project>{ab6d016b-c413-4bf5-83dc-823c441a74f0}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\ext\texpack\platform\msvc\projects\texpack.vcxproj">
       <Project>{a7737c76-5221-47a5-86b7-84bd56c47730}</Project>
     </ProjectReference>
@@ -254,13 +255,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\sample\terrain\CroamApp.h" />
+    <ClInclude Include="..\..\..\sample\terrain\SplitOnlyROAMApp.h" />
+    <ClInclude Include="..\..\..\sample\terrain\SimpleRoamApp.h" />
     <ClInclude Include="..\..\..\sample\terrain\GeoMipMappingApp.h" />
     <ClInclude Include="..\..\..\sample\terrain\HeightMapApp.h" />
-    <ClInclude Include="..\..\..\sample\terrain\HeightMapTex.h" />
     <ClInclude Include="..\..\..\sample\terrain\randtab.h" />
-    <ClInclude Include="..\..\..\sample\terrain\Texture.h" />
-    <ClInclude Include="..\..\..\sample\terrain\TileMapTex.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

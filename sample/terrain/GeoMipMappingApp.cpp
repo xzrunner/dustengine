@@ -95,6 +95,14 @@ struct Vertex
 std::unique_ptr<ur::Shader>       shader = nullptr;
 std::unique_ptr<sl::RenderBuffer> vertex_buf = nullptr;
 
+void flush_vertex_buf(ur::DRAW_MODE mode)
+{
+	vertex_buf->Bind();
+	vertex_buf->Update();
+	ur::Blackboard::Instance()->GetRenderContext().DrawArrays(mode, 0, vertex_buf->Size());
+	vertex_buf->Clear();
+}
+
 // profile
 int LOD_COUNT[4];
 
@@ -146,7 +154,7 @@ void GeoMipMappingApp::Init()
 {
 	m_height_map_tex.MakeHeightMapFault(m_size, 64, 0, 255, 0.05f);
 	m_tile_map_tex.Init();
-	m_detail_map_tex = std::make_unique<Texture>("detailMap.tga");
+	m_detail_map_tex = std::make_unique<terr::Texture>("detailMap.tga");
 
 	if (m_patches) {
 		delete[] m_patches;
@@ -185,6 +193,7 @@ bool GeoMipMappingApp::Update()
 			float z = m_patch_size * (iz + 0.5f);
 			float y = m_height_map_tex.GetHeight(x, z);
 			x = pos_world2proj(x);
+			y = y / 255.0f;
 			z = pos_world2proj(z);
 
 			// culling
@@ -223,10 +232,6 @@ void GeoMipMappingApp::Draw() const
 
 	shader->Use();
 
-#ifdef BATCH_VERTICES
-	vertex_buf->Clear();
-#endif // BATCH_VERTICES
-
 	m_height_map_tex.Bind(0);
 	m_rc->GetUrRc().BindTexture(m_detail_map_tex->GetTexID(), 1);
 	m_tile_map_tex.Bind(2);
@@ -241,10 +246,7 @@ void GeoMipMappingApp::Draw() const
 	}
 
 #ifdef BATCH_VERTICES
-	vertex_buf->Bind();
-	vertex_buf->Update();
-	ur::Blackboard::Instance()->GetRenderContext().DrawArrays(
-		ur::DRAW_TRIANGLE_STRIP, 0, vertex_buf->Size());
+	flush_vertex_buf(ur::DRAW_TRIANGLE_STRIP);
 #endif // BATCH_VERTICES
 
 	// profile

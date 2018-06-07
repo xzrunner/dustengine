@@ -2,8 +2,8 @@
 
 #pragma once
 
-#include "TileMapTex.h"
-#include "HeightMapTex.h"
+#include "terr/TileMapTex.h"
+#include "terr/HeightMapTex.h"
 
 #include <runtime/Application3D.h>
 
@@ -49,11 +49,11 @@ private:
 	void RenderGrid(float x, float z, float size, const Neightbor& nb) const;
 
 private:
-	TileMapTex m_tile_map_tex;
+	terr::TileMapTex m_tile_map_tex;
 
-	HeightMapTex m_height_map_tex;
+	terr::HeightMapTex m_height_map_tex;
 
-	TexturePtr m_detail_map_tex = nullptr;
+	terr::TexturePtr m_detail_map_tex = nullptr;
 
 	int m_size;
 

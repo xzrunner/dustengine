@@ -1,4 +1,4 @@
-#include "CroamApp.h"
+#include "SimpleRoamApp.h"
 #include "randtab.h"
 
 #include <facade/RenderContext.h>
@@ -61,8 +61,8 @@ Vertex vertices[3];
 namespace terrain
 {
 
-CroamApp::CroamApp()
-	: rt::Application3D("CroamApp")
+SimpleRoamApp::SimpleRoamApp()
+	: rt::Application3D("SimpleRoamApp")
 {
 	auto& rc = ur::Blackboard::Instance()->GetRenderContext();
 
@@ -85,7 +85,7 @@ CroamApp::CroamApp()
 	shader->SetMat4("u_modelview", m_camera.GetModelViewMat().x);
 }
 
-void CroamApp::Init()
+void SimpleRoamApp::Init()
 {
 	char cGridTexData[128 * 128 * 4];	//texture for showing mesh
 
@@ -144,7 +144,7 @@ void CroamApp::Init()
 	m_grid_texid = m_rc->GetUrRc().CreateTexture(cGridTexData, 128, 128, ur::TEXTURE_RGBA8);
 }
 
-void CroamApp::Draw() const
+void SimpleRoamApp::Draw() const
 {
 	shader->Use();
 
@@ -189,13 +189,13 @@ void CroamApp::Draw() const
 	}
 }
 
-void CroamApp::UpdateModelView()
+void SimpleRoamApp::UpdateModelView()
 {
 	shader->Use();
 	shader->SetMat4("u_modelview", m_camera.GetModelViewMat().x);
 }
 
-void CroamApp::RenderSub(int iLevel, float* fpVert1, float* fpVert2, float* fpVert3) const
+void SimpleRoamApp::RenderSub(int iLevel, float* fpVert1, float* fpVert2, float* fpVert3) const
 {
 	unsigned char* pC;
 	unsigned int uiS;

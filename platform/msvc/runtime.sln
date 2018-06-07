@@ -111,6 +111,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sample", "sample", "{97F8A1
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "terrain", "projects\terrain.vcxproj", "{067344C2-8774-491D-BB0A-1EB25B14A750}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "3.terr", "..\..\ext\terr\platform\msvc\projects\terr.vcxproj", "{AB6D016B-C413-4BF5-83DC-823C441A74F0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -373,6 +375,12 @@ Global
 		{067344C2-8774-491D-BB0A-1EB25B14A750}.Release|x64.Build.0 = Release|x64
 		{067344C2-8774-491D-BB0A-1EB25B14A750}.Release|x86.ActiveCfg = Release|Win32
 		{067344C2-8774-491D-BB0A-1EB25B14A750}.Release|x86.Build.0 = Release|Win32
+		{AB6D016B-C413-4BF5-83DC-823C441A74F0}.Debug|x64.ActiveCfg = Debug|Win32
+		{AB6D016B-C413-4BF5-83DC-823C441A74F0}.Debug|x86.ActiveCfg = Debug|Win32
+		{AB6D016B-C413-4BF5-83DC-823C441A74F0}.Debug|x86.Build.0 = Debug|Win32
+		{AB6D016B-C413-4BF5-83DC-823C441A74F0}.Release|x64.ActiveCfg = Release|Win32
+		{AB6D016B-C413-4BF5-83DC-823C441A74F0}.Release|x86.ActiveCfg = Release|Win32
+		{AB6D016B-C413-4BF5-83DC-823C441A74F0}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -429,6 +437,7 @@ Global
 		{9FB05942-DCAE-4A6F-8F99-86E20DE9DFCC} = {86E6E106-4572-4E82-864F-1FF49B0C9441}
 		{8C0BFE48-A788-4E59-932D-1F3BD8F0CCE7} = {09FD921E-CB41-47F3-862C-8EDD1AD4AA17}
 		{067344C2-8774-491D-BB0A-1EB25B14A750} = {97F8A1BD-6995-4B59-A87B-D3233EF88E15}
+		{AB6D016B-C413-4BF5-83DC-823C441A74F0} = {6E78CA69-AE4F-4D0D-A979-087183076939}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8D54C01A-3C82-4351-A325-2853C3E81322}
