@@ -2,8 +2,8 @@
 
 #include "terr/TileMapTex.h"
 #include "terr/HeightMapTex.h"
-#include "terr/BinTriPool.h"
-#include "terr/SplitOnlyROAM.h"
+//#include "terr/SplitOnlyROAM.h"
+#include "terr/SplitMergeROAM.h"
 
 #include <runtime/Application3D.h>
 
@@ -12,10 +12,10 @@
 namespace terrain
 {
 
-class SplitOnlyROAMApp : public rt::Application3D
+class RoamApp : public rt::Application3D
 {
 public:
-	SplitOnlyROAMApp();
+	RoamApp();
 
 	virtual void Init() override;
 	virtual bool Update() override;
@@ -32,9 +32,11 @@ private:
 
 	terr::TexturePtr m_detail_map_tex = nullptr;
 
-	terr::BinTriPool    m_tri_pool;
-	terr::SplitOnlyROAM m_roam;
+	//terr::SplitOnlyROAM::BinTriPool m_tri_pool;
+	//terr::SplitOnlyROAM m_roam;
+	terr::SplitMergeROAM::BinTriPool m_tri_pool;
+	terr::SplitMergeROAM m_roam;
 
-}; // SplitOnlyROAMApp
+}; // RoamApp
 
 }

@@ -1,4 +1,4 @@
-#include "SplitOnlyROAMApp.h"
+#include "RoamApp.h"
 #include "terr/TileMapTex.h"
 
 #include <facade/RenderContext.h>
@@ -117,8 +117,8 @@ void send_vertex(float x, float z, float size)
 namespace terrain
 {
 
-SplitOnlyROAMApp::SplitOnlyROAMApp()
-	: rt::Application3D("SplitOnlyROAMApp")
+RoamApp::RoamApp()
+	: rt::Application3D("RoamApp")
 	, m_height_map_tex(true)
 	, m_tri_pool(DEFAULT_POLYGON_TARGET * 3)
 	, m_roam(SIZE, m_tri_pool)
@@ -150,7 +150,8 @@ SplitOnlyROAMApp::SplitOnlyROAMApp()
 	shader->SetMat4("u_modelview", m_camera.GetModelViewMat().x);
 
 	// callback
-	terr::SplitOnlyROAM::CallbackFuncs cb;
+	//terr::SplitOnlyROAM::CallbackFuncs cb;
+	terr::SplitMergeROAM::CallbackFuncs cb;
 	cb.get_height = [&](int x, int y)->uint8_t
 	{
 		return m_height_map_tex.GetHeight(x, y);
@@ -178,7 +179,7 @@ SplitOnlyROAMApp::SplitOnlyROAMApp()
 	m_roam.RegisterCallback(cb);
 }
 
-void SplitOnlyROAMApp::Init()
+void RoamApp::Init()
 {
 	//m_height_map_tex.LoadFromRawFile("height128.raw", SIZE);
 	//m_height_map_tex.MakeHeightMapPlasma(SIZE, 1.0f);
@@ -191,13 +192,13 @@ void SplitOnlyROAMApp::Init()
 	m_roam.Init();
 }
 
-bool SplitOnlyROAMApp::Update()
+bool RoamApp::Update()
 {
 	m_frustum.CalculateViewFrustum(m_camera);
 	return m_roam.Update();
 }
 
-void SplitOnlyROAMApp::Draw() const
+void RoamApp::Draw() const
 {
 	shader->Use();
 
@@ -209,13 +210,13 @@ void SplitOnlyROAMApp::Draw() const
 	flush_vertex_buf(ur::DRAW_TRIANGLES);
 }
 
-void SplitOnlyROAMApp::UpdateModelView()
+void RoamApp::UpdateModelView()
 {
 	shader->Use();
 	shader->SetMat4("u_modelview", m_camera.GetModelViewMat().x);
 }
 
-void SplitOnlyROAMApp::OnKeyDown(rt::KeyType key)
+void RoamApp::OnKeyDown(rt::KeyType key)
 {
 	auto& rc = ur::Blackboard::Instance()->GetRenderContext();
 	switch (key)

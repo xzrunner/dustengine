@@ -1,7 +1,7 @@
 #include "SimpleRoamApp.h"
 #include "HeightMapApp.h"
 #include "GeoMipMappingApp.h"
-#include "SplitOnlyROAMApp.h"
+#include "RoamApp.h"
 
 #include <glp_loop.h>
 
@@ -12,7 +12,7 @@ int main()
 	//terrain::SimpleRoamApp app;
 	//terrain::HeightMapApp app;
 	//terrain::GeoMipMappingApp app(513, 17);
-	terrain::SplitOnlyROAMApp app;
+	terrain::RoamApp app;
 
 	app.Init();
 

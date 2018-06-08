@@ -8,10 +8,10 @@
     <ClCompile Include="..\..\..\sample\terrain\HeightMapApp.cpp">
       <Filter>app</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\sample\terrain\SplitOnlyROAMApp.cpp">
+    <ClCompile Include="..\..\..\sample\terrain\SimpleRoamApp.cpp">
       <Filter>app</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\sample\terrain\SimpleRoamApp.cpp">
+    <ClCompile Include="..\..\..\sample\terrain\RoamApp.cpp">
       <Filter>app</Filter>
     </ClCompile>
   </ItemGroup>
@@ -23,10 +23,10 @@
     <ClInclude Include="..\..\..\sample\terrain\HeightMapApp.h">
       <Filter>app</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\sample\terrain\SplitOnlyROAMApp.h">
+    <ClInclude Include="..\..\..\sample\terrain\SimpleRoamApp.h">
       <Filter>app</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\sample\terrain\SimpleRoamApp.h">
+    <ClInclude Include="..\..\..\sample\terrain\RoamApp.h">
       <Filter>app</Filter>
     </ClInclude>
   </ItemGroup>
