@@ -1,9 +1,18 @@
 #pragma once
 
-#include "terr/TileMapTex.h"
-#include "terr/HeightMapTex.h"
-//#include "terr/SplitOnlyROAM.h"
-#include "terr/SplitMergeROAM.h"
+//#define SPLIT_ONLY
+#define SPLIT_MERGE
+//#define SPLIT_MERGE_QUEUE
+
+#include <terr/TileMapTex.h>
+#include <terr/HeightMapTex.h>
+#ifdef SPLIT_ONLY
+#include <terr/SplitOnlyROAM.h>
+#elif defined SPLIT_MERGE
+#include <terr/SplitMergeROAM.h>
+#elif defined SPLIT_MERGE_QUEUE
+#include <terr/SplitMergeQueueROAM.h>
+#endif
 
 #include <runtime/Application3D.h>
 
@@ -32,10 +41,16 @@ private:
 
 	terr::TexturePtr m_detail_map_tex = nullptr;
 
-	//terr::SplitOnlyROAM::BinTriPool m_tri_pool;
-	//terr::SplitOnlyROAM m_roam;
+#ifdef SPLIT_ONLY
+	terr::SplitOnlyROAM::BinTriPool m_tri_pool;
+	terr::SplitOnlyROAM m_roam;
+#elif defined SPLIT_MERGE
 	terr::SplitMergeROAM::BinTriPool m_tri_pool;
 	terr::SplitMergeROAM m_roam;
+#elif defined SPLIT_MERGE_QUEUE
+	terr::SplitMergeQueueROAM::BinTriPool m_tri_pool;
+	terr::SplitMergeQueueROAM m_roam;
+#endif
 
 }; // RoamApp
 

@@ -1,5 +1,4 @@
 #include "HeightMapApp.h"
-#include "terr/TileMapTex.h"
 
 #include <facade/RenderContext.h>
 #include <unirender/Shader.h>
@@ -8,7 +7,7 @@
 #include <shaderlab/Buffer.h>
 #include <shaderlab/RenderBuffer.h>
 #include <painting3/PrimitiveDraw.h>
-
+#include <terr/TileMapTex.h>
 
 namespace
 {

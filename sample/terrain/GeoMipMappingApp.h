@@ -2,9 +2,8 @@
 
 #pragma once
 
-#include "terr/TileMapTex.h"
-#include "terr/HeightMapTex.h"
-
+#include <terr/TileMapTex.h>
+#include <terr/HeightMapTex.h>
 #include <runtime/Application3D.h>
 
 namespace terrain

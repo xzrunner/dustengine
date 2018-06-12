@@ -2,37 +2,18 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="..\..\..\sample\terrain\main.cpp" />
-    <ClCompile Include="..\..\..\sample\terrain\GeoMipMappingApp.cpp">
-      <Filter>app</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\sample\terrain\HeightMapApp.cpp">
-      <Filter>app</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\sample\terrain\SimpleRoamApp.cpp">
-      <Filter>app</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\sample\terrain\RoamApp.cpp">
-      <Filter>app</Filter>
-    </ClCompile>
+    <ClCompile Include="..\..\..\sample\terrain\GeoMipMappingApp.cpp" />
+    <ClCompile Include="..\..\..\sample\terrain\HeightMapApp.cpp" />
+    <ClCompile Include="..\..\..\sample\terrain\SimpleRoamApp.cpp" />
+    <ClCompile Include="..\..\..\sample\terrain\RoamApp.cpp" />
+    <ClCompile Include="..\..\..\sample\terrain\SimpleSceneApp.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\sample\terrain\randtab.h" />
-    <ClInclude Include="..\..\..\sample\terrain\GeoMipMappingApp.h">
-      <Filter>app</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\sample\terrain\HeightMapApp.h">
-      <Filter>app</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\sample\terrain\SimpleRoamApp.h">
-      <Filter>app</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\sample\terrain\RoamApp.h">
-      <Filter>app</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Filter Include="app">
-      <UniqueIdentifier>{a0e0524e-cbc5-44cf-b965-6bcff0895606}</UniqueIdentifier>
-    </Filter>
+    <ClInclude Include="..\..\..\sample\terrain\GeoMipMappingApp.h" />
+    <ClInclude Include="..\..\..\sample\terrain\HeightMapApp.h" />
+    <ClInclude Include="..\..\..\sample\terrain\SimpleRoamApp.h" />
+    <ClInclude Include="..\..\..\sample\terrain\RoamApp.h" />
+    <ClInclude Include="..\..\..\sample\terrain\SimpleSceneApp.h" />
   </ItemGroup>
 </Project>

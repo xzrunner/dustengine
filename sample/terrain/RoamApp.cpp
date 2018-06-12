@@ -1,6 +1,6 @@
 #include "RoamApp.h"
-#include "terr/TileMapTex.h"
 
+#include <terr/TileMapTex.h>
 #include <facade/RenderContext.h>
 #include <unirender/Shader.h>
 #include <unirender/Blackboard.h>
@@ -150,12 +150,27 @@ RoamApp::RoamApp()
 	shader->SetMat4("u_modelview", m_camera.GetModelViewMat().x);
 
 	// callback
-	//terr::SplitOnlyROAM::CallbackFuncs cb;
+#ifdef SPLIT_ONLY
+	terr::SplitOnlyROAM::CallbackFuncs cb;
+#elif defined SPLIT_MERGE
 	terr::SplitMergeROAM::CallbackFuncs cb;
+#elif defined SPLIT_MERGE_QUEUE
+	terr::SplitMergeQueueROAM::CallbackFuncs cb;
+#endif
 	cb.get_height = [&](int x, int y)->uint8_t
 	{
 		return m_height_map_tex.GetHeight(x, y);
 	};
+#ifdef SPLIT_MERGE_QUEUE
+	cb.dis_to_camera_square = [&](int x, int y)->float
+	{
+		sm::vec3 p;
+		p.x = pos_world2proj(x);
+		p.y = m_height_map_tex.GetHeight(x, y) / 255.0f;
+		p.z = pos_world2proj(y);
+		return sm::dis_square_pos3_to_pos3(m_camera.GetPos(), p) / POS_TRANS_SCALE;
+	};
+#else
 	cb.dis_to_camera = [&](int x, int y)->float
 	{
 		sm::vec3 p;
@@ -164,6 +179,7 @@ RoamApp::RoamApp()
 		p.z = pos_world2proj(y);
 		return sm::dis_pos3_to_pos3(m_camera.GetPos(), p) / POS_TRANS_SCALE;
 	};
+#endif // SPLIT_MERGE_QUEUE
 	cb.sphere_in_frustum = [&](float x, float y, float radius)->bool
 	{
 		float px = pos_world2proj(x);
@@ -176,6 +192,17 @@ RoamApp::RoamApp()
 	{
 		send_vertex(x, y, SIZE);
 	};
+#if defined SPLIT_MERGE && defined CACHE_VERTEX
+	cb.fill_vb = [&](float* vb, float x, float y)
+	{
+		auto v = Vertex(x, y, SIZE);
+		memcpy(vb, &v, sizeof(v));
+	};
+	cb.draw = [&](float* vb, int vb_n)
+	{
+		vertex_buf->Add(vb, vb_n);
+	};
+#endif // SPLIT_MERGE
 	m_roam.RegisterCallback(cb);
 }
 
