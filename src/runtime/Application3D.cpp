@@ -13,7 +13,9 @@ Application3D::Application3D(const std::string& title)
 	: Application(title)
 	, m_camera(sm::vec3(0, 2, -2), sm::vec3(0, 0, 0), sm::vec3(0, 1, 0))
 {
-	m_rc->GetUrRc().EnableDepth(true);
+	auto& rc = m_rc->GetUrRc();
+	rc.EnableDepth(true);
+	rc.SetCull(ur::CULL_BACK);
 
 	m_editop = std::make_unique<Cam3dOP>(m_camera, m_viewport);
 
