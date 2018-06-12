@@ -128,6 +128,7 @@
     <ClCompile Include="..\..\..\sample\terrain\GeoMipMappingApp.cpp" />
     <ClCompile Include="..\..\..\sample\terrain\HeightMapApp.cpp" />
     <ClCompile Include="..\..\..\sample\terrain\main.cpp" />
+    <ClCompile Include="..\..\..\sample\terrain\SimpleSceneApp.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\ext\anim\platform\msvc\projects\anim.vcxproj">
@@ -260,6 +261,7 @@
     <ClInclude Include="..\..\..\sample\terrain\GeoMipMappingApp.h" />
     <ClInclude Include="..\..\..\sample\terrain\HeightMapApp.h" />
     <ClInclude Include="..\..\..\sample\terrain\randtab.h" />
+    <ClInclude Include="..\..\..\sample\terrain\SimpleSceneApp.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

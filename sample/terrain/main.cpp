@@ -2,6 +2,7 @@
 #include "HeightMapApp.h"
 #include "GeoMipMappingApp.h"
 #include "RoamApp.h"
+#include "SimpleSceneApp.h"
 
 #include <glp_loop.h>
 
@@ -13,6 +14,7 @@ int main()
 	//terrain::HeightMapApp app;
 	//terrain::GeoMipMappingApp app(513, 17);
 	terrain::RoamApp app;
+	//terrain::SimpleSceneApp app;
 
 	app.Init();
 
