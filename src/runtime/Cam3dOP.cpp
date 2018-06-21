@@ -53,11 +53,11 @@ void Cam3dOP::OnMouseDrag(float x, float y)
 	}
 }
 
-void Cam3dOP::OnMouseWheelRotation(float x, float y, float offx, float offy)
+void Cam3dOP::OnMouseWheelRotation(float x, float y, float offx, float offy, float speed)
 {
 	sm::vec2 pos(static_cast<float>(x), static_cast<float>(y));
 	sm::vec3 dir = m_vp.TransPos3ScreenToDir(pos, m_cam);
-	m_cam.Move(dir, m_cam.GetDistance() * offy * 0.1f);
+	m_cam.Move(dir, m_cam.GetDistance() * offy * speed);
 }
 
 }

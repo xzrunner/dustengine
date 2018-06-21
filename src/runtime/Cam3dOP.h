@@ -17,7 +17,7 @@ public:
 	virtual void OnMouseLeftDown(float x, float y) override;
 	virtual void OnMouseRightDown(float x, float y) override;
 	virtual void OnMouseDrag(float x, float y) override;
-	virtual void OnMouseWheelRotation(float x, float y, float offx, float offy) override;
+	virtual void OnMouseWheelRotation(float x, float y, float offx, float offy, float speed) override;
 
 private:
 	pt3::Camera&   m_cam;

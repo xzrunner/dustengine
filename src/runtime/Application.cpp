@@ -120,8 +120,13 @@ void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
 		double x, y;
 		glfwGetCursorPos(window, &x, &y);
 
+		float speed = 0.05f;
+		if (glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS ||
+			glfwGetKey(window, GLFW_KEY_RIGHT_SHIFT) == GLFW_PRESS) {
+			speed = 0.005f;
+		}
 		app->GetEditOP()->OnMouseWheelRotation(
-			float(x), float(y), float(xoffset), float(yoffset));
+			float(x), float(y), float(xoffset), float(yoffset), speed);
 		app->UpdateModelView();
 	}
 }

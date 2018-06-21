@@ -15,7 +15,7 @@ public:
 	virtual void OnMouseRightUp(float x, float y) {}
 	virtual void OnMouseMove(float x, float y) {}
 	virtual void OnMouseDrag(float x, float y) {}
-	virtual void OnMouseWheelRotation(float x, float y, float offx, float offy) {}
+	virtual void OnMouseWheelRotation(float x, float y, float offx, float offy, float speed) {}
 
 }; // EditOP
 

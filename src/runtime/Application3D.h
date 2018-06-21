@@ -12,7 +12,7 @@ namespace rt
 class Application3D : public Application
 {
 public:
-	Application3D(const std::string& title);
+	Application3D(const std::string& title, bool has2d = false);
 
 protected:
 	void UpdateProjMat();
