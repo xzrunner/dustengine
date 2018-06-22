@@ -1,5 +1,7 @@
 #pragma once
 
+#include <node0/typedef.h>
+#include <vtex/VirtualTexture.h>
 #include <runtime/Application3D.h>
 
 namespace vtexture
@@ -16,7 +18,12 @@ public:
 
 	virtual void UpdateModelView() override;
 
-	virtual void OnKeyDown(rt::KeyType key) override;
+	virtual void OnKeyDown(rt::KeyType key, int mods) override;
+
+private:
+	n0::SceneNodePtr m_node = nullptr;
+
+	std::unique_ptr<vtex::VirtualTexture> m_vt;
 
 }; // VirtualTextureApp
 
