@@ -144,7 +144,6 @@ bool VirtualTextureApp::Update()
 void VirtualTextureApp::Draw() const
 {
 	auto& rc = ur::Blackboard::Instance()->GetRenderContext();
-	rc.Clear(0xaaaaaaaa);
 
 	// pass 1
 
@@ -158,6 +157,11 @@ void VirtualTextureApp::Draw() const
 	auto screen_sz = wc->GetScreenSize();
 
 	rc.SetViewport(0, 0, FEEDBACK_SIZE, FEEDBACK_SIZE);
+
+	rc.SetDepthFormat(ur::DEPTH_LESS_EQUAL);
+	rc.SetClearFlag(ur::MASKC | ur::MASKD);
+	rc.Clear(0);
+
 	n3::RenderSystem::Draw(node, m_camera.GetModelViewMat());
 
 	feedback_buf->Download();
@@ -168,6 +172,8 @@ void VirtualTextureApp::Draw() const
 	rc.SetViewport(0, 0, screen_sz.x, screen_sz.y);
 
 	// pass 2
+	rc.Clear(0);
+
 	pt3::EffectsManager::Instance()->SetUserEffect(final_shader);
 	rc.BindTexture(virt_tex->GetPageTableTexID(), 0);
 	rc.BindTexture(virt_tex->GetAtlasTexID(), 1);
