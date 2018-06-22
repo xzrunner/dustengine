@@ -33,29 +33,7 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 		return;
 	}
 
-	rt::KeyType rt_key = rt::KEY_UNKNOWN;
-	switch (key)
-	{
-	case GLFW_KEY_LEFT:
-		rt_key = rt::KEY_LEFT;
-		break;
-	case GLFW_KEY_RIGHT:
-		rt_key = rt::KEY_RIGHT;
-		break;
-	case GLFW_KEY_UP:
-		rt_key = rt::KEY_UP;
-		break;
-	case GLFW_KEY_DOWN:
-		rt_key = rt::KEY_DOWN;
-		break;
-	}
-	if (key >= GLFW_KEY_A && key <= GLFW_KEY_Z) {
-		rt_key = rt::KeyType(key);
-	}
-	if (rt_key == rt::KEY_UNKNOWN) {
-		return;
-	}
-
+	rt::KeyType rt_key = rt::KeyType(key);
 	auto op = app->GetEditOP();
 	if (!op) {
 		return;
@@ -66,7 +44,7 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 	case GLFW_PRESS:
 	case GLFW_REPEAT:
 		op->OnKeyDown(rt_key);
-		app->OnKeyDown(rt_key);
+		app->OnKeyDown(rt_key, mods);
 		app->UpdateModelView();
 		break;
 	case GLFW_RELEASE:
@@ -120,10 +98,10 @@ void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
 		double x, y;
 		glfwGetCursorPos(window, &x, &y);
 
-		float speed = 0.05f;
+		float speed = 0.01f;
 		if (glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS ||
 			glfwGetKey(window, GLFW_KEY_RIGHT_SHIFT) == GLFW_PRESS) {
-			speed = 0.005f;
+			speed = 0.0001f;
 		}
 		app->GetEditOP()->OnMouseWheelRotation(
 			float(x), float(y), float(xoffset), float(yoffset), speed);

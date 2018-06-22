@@ -27,7 +27,7 @@ public:
 
 	virtual void UpdateModelView() = 0;
 
-	virtual void OnKeyDown(KeyType key) {}
+	virtual void OnKeyDown(KeyType key, int mods) {}
 
 	GLFWwindow* GetWnd() { return m_wnd; }
 

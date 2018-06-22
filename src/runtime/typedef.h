@@ -34,12 +34,30 @@ enum KeyType
 	KEY_Y = 89,
 	KEY_Z = 90,
 
-	KEY_LEFT = 256,
-	KEY_RIGHT,
-	KEY_UP,
-	KEY_DOWN,
+	KEY_RIGHT = 262,
+	KEY_LEFT  = 263,
+	KEY_DOWN  = 264,
+	KEY_UP    = 265,
 
+	KEY_F1  = 290,
+	KEY_F2  = 291,
+	KEY_F3  = 292,
+	KEY_F4  = 293,
+	KEY_F5  = 294,
+	KEY_F6  = 295,
+	KEY_F7  = 296,
+	KEY_F8  = 297,
+	KEY_F9  = 298,
+	KEY_F10 = 299,
+	KEY_F11 = 300,
+	KEY_F12 = 301,
+};
 
+enum KeyMod
+{
+	KEY_MOD_SHIFT   = 0x0001,
+	KEY_MOD_CONTROL = 0x0002,
+	KEY_MOD_ALT     = 0x0004,
 };
 
 }
