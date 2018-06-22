@@ -4,7 +4,5 @@ Release/
 
 projects/*
 
-!projects/runtime.vcxproj
-!projects/runtime.vcxproj.filters
-!projects/terrain.vcxproj
-!projects/terrain.vcxproj.filters
+!projects/*.vcxproj
+!projects/*.vcxproj.filters
