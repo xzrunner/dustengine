@@ -8,7 +8,9 @@
 #include <ns/Blackboard.h>
 #include <node3/RenderSystem.h>
 #include <node3/UpdateSystem.h>
+#include <vtex/Callback.h>
 #include <facade/Facade.h>
+#include <facade/Multitask.h>
 
 namespace
 {
@@ -17,6 +19,12 @@ uint32_t next_obj_id = 0;
 
 static const int FEEDBACK_SIZE    = 64;
 static const int VIRTUAL_TEX_SIZE = 8192;
+//static const int VIRTUAL_TEX_SIZE = 8192 * 4;
+
+void submit_task(mt::Task* task)
+{
+	facade::Multitask::Instance()->Run(task);
+}
 
 }
 
@@ -26,8 +34,13 @@ namespace vtexture
 VirtualTextureApp::VirtualTextureApp()
 	: rt::Application3D("VirtualTexture", true)
 {
+	vtex::Callback::Funs funcs;
+	funcs.submit_task = submit_task;
+	vtex::Callback::RegisterCallback(funcs);
+
 	vtex::VirtualTextureInfo info(VIRTUAL_TEX_SIZE, 128, 1);
-	m_vt = std::make_unique<vtex::VirtualTexture>("DemoScene_8k.tga.cache", info, 1, FEEDBACK_SIZE, VIRTUAL_TEX_SIZE);
+	m_vt = std::make_unique<vtex::VirtualTexture>("DemoScene_8k.tga.cache", info, 1, FEEDBACK_SIZE);
+//	m_vt = std::make_unique<vtex::VirtualTexture>("DemoScene_32k.raw.cache", info, 1, FEEDBACK_SIZE);
 }
 
 void VirtualTextureApp::Init()
