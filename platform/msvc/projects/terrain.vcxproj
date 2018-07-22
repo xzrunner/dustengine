@@ -69,7 +69,14 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>..\terrain\x86\Debug\</OutDir>
+    <IntDir>..\terrain\x86\Debug\obj\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>..\terrain\x86\Release\</OutDir>
+    <IntDir>..\terrain\x86\Release\obj\</IntDir>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -173,6 +180,9 @@
     <ProjectReference Include="..\..\..\ext\js\platform\msvc\projects\js.vcxproj">
       <Project>{68c18da9-79bb-43a5-9e0c-79740aea954b}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\ext\lexer\platform\msvc\projects\lexer.vcxproj">
+      <Project>{7719a1d1-af73-4e1d-bd99-e9b706195639}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\ext\logger\platform\msvc\projects\logger.vcxproj">
       <Project>{4031b66e-39a3-401e-918a-e1424a4af944}</Project>
     </ProjectReference>
@@ -221,6 +231,9 @@
     <ProjectReference Include="..\..\..\ext\ps\platform\msvc\projects\ps.vcxproj">
       <Project>{ee2229a3-ad5f-46e7-afab-729f8aa18036}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\ext\quake\platform\msvc\projects\quake.vcxproj">
+      <Project>{e12e3322-1408-4380-8219-659c02b2020c}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\ext\rapidvg\platform\msvc\projects\rapidvg.vcxproj">
       <Project>{66207e9a-031c-402b-9e3e-fa5599a1c89b}</Project>
     </ProjectReference>
@@ -250,6 +263,9 @@
     </ProjectReference>
     <ProjectReference Include="..\..\..\ext\unirender\platform\msvc\projects\unirender.vcxproj">
       <Project>{637a0e9c-1867-459d-8611-65a064e3b2c2}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\ext\vtex\platform\msvc\projects\vtex.vcxproj">
+      <Project>{d9b1b541-5bcc-4a5f-8a7a-2ced3cead3dd}</Project>
     </ProjectReference>
     <ProjectReference Include="runtime.vcxproj">
       <Project>{8c0bfe48-a788-4e59-932d-1f3bd8f0cce7}</Project>

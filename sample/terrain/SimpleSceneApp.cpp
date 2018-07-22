@@ -144,15 +144,15 @@ SimpleSceneApp::SimpleSceneApp()
 	textures.push_back("u_tex_splat2");
 
 	CU_VEC<ur::VertexAttrib> layout;
-	layout.push_back(ur::VertexAttrib("position", 3, 4));
-	layout.push_back(ur::VertexAttrib("texcoord", 2, 4));
+	layout.push_back(ur::VertexAttrib("position", 3, 4, 20, 0));
+	layout.push_back(ur::VertexAttrib("texcoord", 2, 4, 20, 12));
 
 	shader = std::make_unique<ur::Shader>(&rc, vs, fs, textures, layout);
 
 	size_t vertex_sz = sizeof(float) * (3 + 2);
 	size_t max_vertex = SCENE_SIZE * SCENE_SIZE;
 	sl::Buffer* buf = new sl::Buffer(vertex_sz, max_vertex);
-	vertex_buf = std::make_unique<sl::RenderBuffer>(rc, ur::VERTEXBUFFER, vertex_sz, max_vertex, buf);
+	vertex_buf = std::make_unique<sl::RenderBuffer>(rc, ur::VERTEXBUFFER, vertex_sz * max_vertex, buf);
 
 	// update mat
 	shader->Use();
@@ -207,10 +207,10 @@ void SimpleSceneApp::Draw() const
 
 	int channel = 0;
 	m_height_map_tex.Bind(channel++);
-	m_rc->GetUrRc().BindTexture(m_detail_map_tex->GetTexID(), channel++);
-	m_rc->GetUrRc().BindTexture(m_blend_map_tex->GetTexID(), channel++);
+	m_rc->GetUrRc().BindTexture(m_detail_map_tex->TexID(), channel++);
+	m_rc->GetUrRc().BindTexture(m_blend_map_tex->TexID(), channel++);
 	for (int i = 0; i < 3; ++i) {
-		m_rc->GetUrRc().BindTexture(m_splat_tex[i]->GetTexID(), channel++);
+		m_rc->GetUrRc().BindTexture(m_splat_tex[i]->TexID(), channel++);
 	}
 
 	m_roam.Draw();
@@ -224,7 +224,7 @@ void SimpleSceneApp::UpdateModelView()
 	shader->SetVec3("u_cam_pos", m_camera.GetPos().xyz);
 }
 
-void SimpleSceneApp::OnKeyDown(rt::KeyType key)
+void SimpleSceneApp::OnKeyDown(rt::KeyType key, int mods)
 {
 	auto& rc = ur::Blackboard::Instance()->GetRenderContext();
 	switch (key)
@@ -375,12 +375,12 @@ void SimpleSceneApp::InitTexture()
 
 	auto& rc = ur::Blackboard::Instance()->GetRenderContext();
 	int texid = rc.CreateTexture(alpha_map, TEX_MAP_SIZE, TEX_MAP_SIZE, ur::TEXTURE_RGBA8);
-	m_blend_map_tex = std::make_unique<terr::Texture>(texid, TEX_MAP_SIZE, TEX_MAP_SIZE, ur::TEXTURE_RGBA8);
+	m_blend_map_tex = std::make_unique<ur::Texture>(&rc, TEX_MAP_SIZE, TEX_MAP_SIZE, ur::TEXTURE_RGBA8, texid);
 	delete[] alpha_map;
 
 	for (int i = 0; i < 3; ++i) {
 		std::string filename = "scene/Texture" + std::to_string(i) + ".tga";
-		m_splat_tex[i] = std::make_unique<terr::Texture>(filename.c_str());
+		m_splat_tex[i] = terr::TextureLoader::LoadFromFile(filename.c_str());
 	}
 }
 

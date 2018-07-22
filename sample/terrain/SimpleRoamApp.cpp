@@ -69,15 +69,15 @@ SimpleRoamApp::SimpleRoamApp()
 	std::vector<std::string> textures;
 
 	CU_VEC<ur::VertexAttrib> layout;
-	layout.push_back(ur::VertexAttrib("position", 3, 4));
-	layout.push_back(ur::VertexAttrib("texcoord", 2, 4));
+	layout.push_back(ur::VertexAttrib("position", 3, 4, 20, 0));
+	layout.push_back(ur::VertexAttrib("texcoord", 2, 4, 20, 12));
 
 	shader = std::make_unique<ur::Shader>(&rc, vs, fs, textures, layout);
 
 	size_t vertex_sz = sizeof(float) * (3 + 2);
 	size_t max_vertex = 4096;
 	sl::Buffer* buf = new sl::Buffer(vertex_sz, max_vertex);
-	vertex_buf = std::make_unique<sl::RenderBuffer>(rc, ur::VERTEXBUFFER, vertex_sz, max_vertex, buf);
+	vertex_buf = std::make_unique<sl::RenderBuffer>(rc, ur::VERTEXBUFFER, vertex_sz * max_vertex, buf);
 
 	// update mat
 	shader->Use();

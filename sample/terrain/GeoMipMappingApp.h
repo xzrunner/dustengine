@@ -21,7 +21,7 @@ public:
 
 	virtual void UpdateModelView() override;
 
-	virtual void OnKeyDown(rt::KeyType key) override;
+	virtual void OnKeyDown(rt::KeyType key, int mods) override;
 
 private:
 	struct Patch
@@ -52,7 +52,7 @@ private:
 
 	terr::HeightMapTex m_height_map_tex;
 
-	terr::TexturePtr m_detail_map_tex = nullptr;
+	ur::TexturePtr m_detail_map_tex = nullptr;
 
 	int m_size;
 

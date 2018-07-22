@@ -10,6 +10,8 @@ Cam3dOP::Cam3dOP(pt3::Camera& cam, pt3::Viewport& vp)
 	: m_cam(cam)
 	, m_vp(vp)
 {
+	//m_cam = pt3::Camera(sm::vec3(-67.815f, 1.8345f, 95.388f),
+	//	sm::vec3(-30.478f, -53.3289f, 83.9449f), sm::vec3(-0.293f, 0, -0.9561f));
 }
 
 void Cam3dOP::OnMouseLeftDown(float x, float y)

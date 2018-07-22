@@ -8,6 +8,7 @@
 #include <shaderlab/RenderBuffer.h>
 #include <painting3/PrimitiveDraw.h>
 #include <terr/TileMapTex.h>
+#include <terr/TextureLoader.h>
 
 namespace
 {
@@ -109,15 +110,15 @@ HeightMapApp::HeightMapApp()
 	textures.push_back("u_tex_tilemap3");
 
 	CU_VEC<ur::VertexAttrib> layout;
-	layout.push_back(ur::VertexAttrib("position", 3, 4));
-	layout.push_back(ur::VertexAttrib("texcoord", 2, 4));
+	layout.push_back(ur::VertexAttrib("position", 3, 4, 20, 0));
+	layout.push_back(ur::VertexAttrib("texcoord", 2, 4, 20, 12));
 
 	shader = std::make_unique<ur::Shader>(&rc, vs, fs, textures, layout);
 
 	size_t vertex_sz = sizeof(float) * (3 + 2);
 	size_t max_vertex = SIZE * SIZE * 2;
 	sl::Buffer* buf = new sl::Buffer(vertex_sz, max_vertex);
-	vertex_buf = std::make_unique<sl::RenderBuffer>(rc, ur::VERTEXBUFFER, vertex_sz, max_vertex, buf);
+	vertex_buf = std::make_unique<sl::RenderBuffer>(rc, ur::VERTEXBUFFER, vertex_sz * max_vertex, buf);
 
 	// update mat
 	shader->Use();
@@ -127,13 +128,16 @@ HeightMapApp::HeightMapApp()
 
 void HeightMapApp::Init()
 {
+	auto& rc = m_rc->GetUrRc();
+	rc.SetCull(ur::CULL_DISABLE);
+
 	//m_height_map_tex.LoadFromRawFile("height128.raw", SIZE);
 	//m_height_map_tex.MakeHeightMapPlasma(SIZE, 1.0f);
 	m_height_map_tex.MakeHeightMapFault(SIZE, 64, 0, 255, 0.05f);
 
 	m_tile_map_tex.Init();
 
-	m_detail_map_tex = std::make_unique<terr::Texture>("detailMap.tga");
+	m_detail_map_tex = terr::TextureLoader::LoadFromFile("detailMap.tga");
 }
 
 void HeightMapApp::Draw() const
@@ -141,7 +145,7 @@ void HeightMapApp::Draw() const
 	shader->Use();
 
 	m_height_map_tex.Bind(0);
-	m_rc->GetUrRc().BindTexture(m_detail_map_tex->GetTexID(), 1);
+	m_rc->GetUrRc().BindTexture(m_detail_map_tex->TexID(), 1);
 	m_tile_map_tex.Bind(2);
 
 	bool new_line = false;

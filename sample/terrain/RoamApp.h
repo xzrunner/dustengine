@@ -32,14 +32,14 @@ public:
 
 	virtual void UpdateModelView() override;
 
-	virtual void OnKeyDown(rt::KeyType key) override;
+	virtual void OnKeyDown(rt::KeyType key, int mods) override;
 
 private:
 	terr::TileMapTex m_tile_map_tex;
 
 	terr::HeightMapTex m_height_map_tex;
 
-	terr::TexturePtr m_detail_map_tex = nullptr;
+	ur::TexturePtr m_detail_map_tex = nullptr;
 
 #ifdef SPLIT_ONLY
 	terr::SplitOnlyROAM::BinTriPool m_tri_pool;

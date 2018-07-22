@@ -25,7 +25,7 @@ private:
 
 	terr::HeightMapTex m_height_map_tex;
 
-	terr::TexturePtr m_detail_map_tex = nullptr;
+	ur::TexturePtr m_detail_map_tex = nullptr;
 
 }; // HeightMapApp
 

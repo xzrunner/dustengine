@@ -8,6 +8,7 @@
 #include <shaderlab/Buffer.h>
 #include <shaderlab/RenderBuffer.h>
 #include <painting3/PrimitiveDraw.h>
+#include <terr/TextureLoader.h>
 
 #define BATCH_VERTICES
 
@@ -127,15 +128,15 @@ GeoMipMappingApp::GeoMipMappingApp(int size, int patch_size)
 	textures.push_back("u_tex_tilemap3");
 
 	CU_VEC<ur::VertexAttrib> layout;
-	layout.push_back(ur::VertexAttrib("position", 3, 4));
-	layout.push_back(ur::VertexAttrib("texcoord", 2, 4));
+	layout.push_back(ur::VertexAttrib("position", 3, 4, 20, 0));
+	layout.push_back(ur::VertexAttrib("texcoord", 2, 4, 20, 12));
 
 	shader = std::make_unique<ur::Shader>(&rc, vs, fs, textures, layout);
 
 	size_t vertex_sz = sizeof(float) * (3 + 2);
 	size_t max_vertex = 1024 * 100;
 	sl::Buffer* buf = new sl::Buffer(vertex_sz, max_vertex);
-	vertex_buf = std::make_unique<sl::RenderBuffer>(rc, ur::VERTEXBUFFER, vertex_sz, max_vertex, buf);
+	vertex_buf = std::make_unique<sl::RenderBuffer>(rc, ur::VERTEXBUFFER, vertex_sz * max_vertex, buf);
 
 	// update mat
 	shader->Use();
@@ -154,7 +155,7 @@ void GeoMipMappingApp::Init()
 {
 	m_height_map_tex.MakeHeightMapFault(m_size, 64, 0, 255, 0.05f);
 	m_tile_map_tex.Init();
-	m_detail_map_tex = std::make_unique<terr::Texture>("detailMap.tga");
+	m_detail_map_tex = terr::TextureLoader::LoadFromFile("detailMap.tga");
 
 	if (m_patches) {
 		delete[] m_patches;
@@ -233,7 +234,7 @@ void GeoMipMappingApp::Draw() const
 	shader->Use();
 
 	m_height_map_tex.Bind(0);
-	m_rc->GetUrRc().BindTexture(m_detail_map_tex->GetTexID(), 1);
+	m_rc->GetUrRc().BindTexture(m_detail_map_tex->TexID(), 1);
 	m_tile_map_tex.Bind(2);
 
 	for (int iz = 0; iz < m_num_patch_per_side; ++iz) {
@@ -261,7 +262,7 @@ void GeoMipMappingApp::UpdateModelView()
 	shader->SetMat4("u_modelview", m_camera.GetModelViewMat().x);
 }
 
-void GeoMipMappingApp::OnKeyDown(rt::KeyType key)
+void GeoMipMappingApp::OnKeyDown(rt::KeyType key, int mods)
 {
 	auto& rc = ur::Blackboard::Instance()->GetRenderContext();
 	switch (key)

@@ -21,7 +21,7 @@ public:
 
 	virtual void UpdateModelView() override;
 
-	virtual void OnKeyDown(rt::KeyType key) override;
+	virtual void OnKeyDown(rt::KeyType key, int mods) override;
 
 private:
 	void InitTexture();
@@ -29,15 +29,15 @@ private:
 private:
 	struct BlendMapTex
 	{
-		terr::TexturePtr tex;
+		ur::TexturePtr tex;
 	};
 
 private:
 	terr::HeightMapTex m_height_map_tex;
 
-	terr::TexturePtr m_detail_map_tex = nullptr;
-	terr::TexturePtr m_blend_map_tex  = nullptr;
-	terr::TexturePtr m_splat_tex[3];
+	ur::TexturePtr m_detail_map_tex = nullptr;
+	ur::TexturePtr m_blend_map_tex  = nullptr;
+	ur::TexturePtr m_splat_tex[3];
 
 	terr::SplitMergeROAM::BinTriPool m_tri_pool;
 	terr::SplitMergeROAM m_roam;
