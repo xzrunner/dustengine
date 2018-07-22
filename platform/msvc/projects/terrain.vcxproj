@@ -75,7 +75,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <ConformanceMode>true</ConformanceMode>
+      <ConformanceMode>false</ConformanceMode>
       <AdditionalIncludeDirectories>..\..\..\src;..\..\..\ext\cu\src;..\..\..\ext\ds\src\ds;..\..\..\ext\glp\src\glp;..\..\..\ext\sm\src\sm;..\..\..\ext\gimg\src\gimg;..\..\..\ext\guard\include;..\..\..\ext\pimg\include;..\..\..\ext\bs\include;..\..\..\ext\js\include;..\..\..\ext\memmgr\include;..\..\..\ext\unirender\include;..\..\..\ext\shaderlab\include;..\..\..\ext\painting2\include;..\..\..\ext\painting3\include;..\..\..\ext\serializerx\include;..\..\..\ext\nserializer\include;..\..\..\ext\node0\include;..\..\..\ext\node2\include;..\..\..\ext\terr\include;..\..\..\ext\facade\include;..\..\..\ext\external\rapidjson\include;..\..\..\ext\external\json\include;..\..\..\ext\external\boost\include;..\..\..\ext\external\glfw\include;..\..\..\ext\external\gl\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
@@ -98,7 +98,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <ConformanceMode>true</ConformanceMode>
+      <ConformanceMode>false</ConformanceMode>
       <AdditionalIncludeDirectories>..\..\..\src;..\..\..\ext\cu\src;..\..\..\ext\ds\src\ds;..\..\..\ext\glp\src\glp;..\..\..\ext\sm\src\sm;..\..\..\ext\gimg\src\gimg;..\..\..\ext\guard\include;..\..\..\ext\pimg\include;..\..\..\ext\bs\include;..\..\..\ext\js\include;..\..\..\ext\memmgr\include;..\..\..\ext\unirender\include;..\..\..\ext\shaderlab\include;..\..\..\ext\painting2\include;..\..\..\ext\painting3\include;..\..\..\ext\serializerx\include;..\..\..\ext\nserializer\include;..\..\..\ext\node0\include;..\..\..\ext\node2\include;..\..\..\ext\terr\include;..\..\..\ext\facade\include;..\..\..\ext\external\rapidjson\include;..\..\..\ext\external\json\include;..\..\..\ext\external\boost\include;..\..\..\ext\external\glfw\include;..\..\..\ext\external\gl\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
