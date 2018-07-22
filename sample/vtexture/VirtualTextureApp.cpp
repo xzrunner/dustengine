@@ -11,6 +11,7 @@
 #include <vtex/Callback.h>
 #include <facade/Facade.h>
 #include <facade/Multitask.h>
+#include <runtime/Cam3dOP.h>
 
 namespace
 {
@@ -34,6 +35,13 @@ namespace vtexture
 VirtualTextureApp::VirtualTextureApp()
 	: rt::Application3D("VirtualTexture", true)
 {
+	auto op = static_cast<rt::Cam3dOP*>(m_editop.get());
+	op->SetCamPos(
+		sm::vec3(-67.815f, 1.8345f, 95.388f),
+		sm::vec3(-30.478f, -53.3289f, 83.9449f),
+		sm::vec3(-0.293f, 0, -0.9561f)
+	);
+
 	vtex::Callback::Funs funcs;
 	funcs.submit_task = submit_task;
 	vtex::Callback::RegisterCallback(funcs);

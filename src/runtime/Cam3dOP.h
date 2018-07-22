@@ -19,6 +19,8 @@ public:
 	virtual void OnMouseDrag(float x, float y) override;
 	virtual void OnMouseWheelRotation(float x, float y, float offx, float offy, float speed) override;
 
+	void SetCamPos(const sm::vec3& pos, const sm::vec3& target, const sm::vec3& up);
+
 private:
 	pt3::Camera&   m_cam;
 	pt3::Viewport& m_vp;
